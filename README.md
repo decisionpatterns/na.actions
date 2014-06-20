@@ -22,6 +22,7 @@ the native functions from the stats package. The curent list of functions is:
 na.actions suggests the usage of zoo for the collections of na.* function it 
 contains. These will probably be incorporated in this package.
 
-@examples
+examples
+----------
   na.replace( c(1,NA,3), 2)
   
