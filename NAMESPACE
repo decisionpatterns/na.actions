@@ -3,6 +3,7 @@
 S3method(any_na,data.frame)
 S3method(any_na,default)
 export(any_na)
+export(howmany_na)
 export(na.StructTS)
 export(na.aggregate)
 export(na.approx)
