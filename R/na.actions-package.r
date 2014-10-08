@@ -14,6 +14,7 @@
 #'  * na.predict - use a model 
 #'  * na.replace - replace with a constant \code{value}
 #'  * na.roughfix.POSIXct - use with datetime values
+#'  * na.trim - remove NA from the margins of a vector
 #'  * na.zero - replace with 0 
 #' 
 #' na.actions suggests the usage of zoo for the collections of na.* function it 
