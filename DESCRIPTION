@@ -1,6 +1,6 @@
 Package: na.actions
 Title: Functions Functions for handling NA values
-Version: 0.3.2
+Version: 0.3.3
 Authors@R: "Christopher Brown <chris.brown@decisionpatterns.com> [aut, cre]"
 URL: http://github.com/decisionpatterns/na.actions
 Description: Functions for handling NA values conveniently collected in a single
