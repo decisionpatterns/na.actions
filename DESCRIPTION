@@ -9,7 +9,7 @@ Description: Functions for handling NA values conveniently collected in a single
     package.
 URL: https://github.com/decisionpatterns/na.actions
 BugReports: https://github.com/decisionpatterns/na.actions/issues
-Depends: `
+Depends: 
     R (>= 3.1.0)
 Suggests: 
     zoo,
