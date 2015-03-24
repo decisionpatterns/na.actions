@@ -1,13 +1,19 @@
 Package: na.actions
-Title: Functions Functions for handling NA values
+Title: Functions for Handling NA values
 Version: 0.3.5
+Date: 2015-03-23
 Authors@R: "Christopher Brown <chris.brown@decisionpatterns.com> [aut, cre]"
+Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 URL: http://github.com/decisionpatterns/na.actions
 Description: Functions for handling NA values conveniently collected in a single
     package.
-Depends:
+URL: https://github.com/decisionpatterns/na.actions
+BugReports: https://github.com/decisionpatterns/na.actions/issues
+Depends: `
     R (>= 3.1.0)
-Suggests:
-    zoo
+Suggests: 
+    zoo,
+    testthat
 License: GPL-2
 LazyData: true
+
