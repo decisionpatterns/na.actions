@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/decisionpatterns/na.actions.png?branch=master)](decisionpatterns/na.actions)
-[![Coverage Status](https://img.shields.io/coveralls/decisionpatterns/na.actions.svg)](https://coveralls.io/r/decisionpatterns/na.actions?branch=master)
 
 na.actions
 ==========
