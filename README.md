@@ -5,7 +5,7 @@ Functions for handling NA values.
 
 na.actions is a packages for dealing with NA values. The goal is to create a collection for the na.* family of functions that extends the native functions from the stats package. The curent list of functions is:
 
- * na,inf / na.neginf - replance na with Inf/-Inf
+ * na.inf / na.neginf - replance na with Inf/-Inf
  * na.loess - use loess smoother for replacement
  * na.max 
  * na.min 
