@@ -23,5 +23,5 @@ na.actions is a packages for dealing with NA values. The goal is to create a col
 
 examples
 ----------
-  na.replace( c(1,NA,3), 2)
+    na.replace( c(1,NA,3), 2)
   
