@@ -5,6 +5,13 @@
 #' @name any_na
 #' @param x any object
 #' 
+#' @details 
+#' Implemented as: . %>% is.na %>% anyll
+#' 
+#' @seealso 
+#'   \code{\link{all_na}} \cr
+#'   \code{which_na}
+#'   
 #' @examples
 #'   any_na( 1:10 )           # FALSE
 #'   any_na( c( 1, NA, 3 ) )  # TRUE
