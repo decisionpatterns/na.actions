@@ -17,6 +17,10 @@ Replaces \code{NA}s by 0.
 }
 \details{
 Replaces \code{NA} values in the supplied vector with
-a default, \code{value}.
+a default, \code{0}.
+}
+\seealso{
+\code{\link{na.replace}} \cr
+  \code{\link{na.constant}}
 }
 

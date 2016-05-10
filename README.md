@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/decisionpatterns/na.actions.png?branch=master)](decisionpatterns/na.actions)
-
 na.actions
 ==========
 
@@ -22,5 +20,6 @@ na.actions is a packages for dealing with NA values. The goal is to create a col
 
 examples
 ----------
+
     na.replace( c(1,NA,3), 2)
   

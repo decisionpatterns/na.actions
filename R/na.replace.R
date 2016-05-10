@@ -3,7 +3,7 @@
 #' Replaces \code{NA}s by \code{value} 
 #'
 #' @param x vector of values to have the NA replaced with \code{value}
-#' @param value to replace \code{NA}
+#' @param value to replace \code{NA}s
 #' 
 #' @details Replaces \code{NA} values in the supplied vector with 
 #' a default, \code{value}.

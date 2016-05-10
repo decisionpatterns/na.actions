@@ -12,7 +12,7 @@ na_replace(x, value = 0)
 \arguments{
 \item{x}{vector of values to have the NA replaced with \code{value}}
 
-\item{value}{to replace \code{NA}}
+\item{value}{to replace \code{NA}s}
 }
 \value{
 \code{x} with \code{NA}s replaced by \code{value}.

@@ -5,10 +5,15 @@
 #' @param x vector of values to have the NA replaced with \code{value}
 #' 
 #' @details Replaces \code{NA} values in the supplied vector with 
-#' a default, \code{value}.
+#' a default, \code{0}.
 #' 
-#' @return \code{x} with \code{NA}s replaced by 0.
+#' @return 
+#' \code{x} with \code{NA}s replaced by 0.
 #' 
+#' @seealso 
+#'   \code{\link{na.replace}} \cr
+#'   \code{\link{na.constant}} 
+#'  
 #' @rdname na.zero
 #' @export
 
