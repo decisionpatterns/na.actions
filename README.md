@@ -1,10 +1,22 @@
-na.actions
+na.actions: tools for NA values
 ==========
 
-Functions for handling NA values.
+[![License](http://img.shields.io/badge/R_Bridge-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](http://www.r-pkg.org/badges/version/na.actions)](https://cran.rstudio.com/web/packages/na.actions/index.html)
+[![Downloads](http://cranlogs.r-pkg.org/badges/na.actions?color=brightgreen)](http://www.r-pkg.org/pkg/na.actions)
 
-na.actions is a packages for dealing with NA values. The goal is to create a collection for the na.* family of functions that extends the native functions from the stats package. The curent list of functions is:
 
+**na.actions** provides tools for working with missing (`NA`) values. Functions 
+are provided for replacement, imputation, removal and detection. 
+The goals are create a collection of functions to extend the for the `na.*` 
+family of functions that extends the native functions from the **stats* package 
+and provide a comprehensive tool set for common problems encountered with 
+missing values.
+
+
+The curent list of functions is:
+
+## `NA` Replacement and Imputation
  * na.inf / na.neginf - replance na with Inf/-Inf
  * na.loess - use loess smoother for replacement
  * na.max 
@@ -13,13 +25,46 @@ na.actions is a packages for dealing with NA values. The goal is to create a col
  * na.median
  * na.nocb - next observation carried backwards
  * na.predict - use a model 
- * na.replace - replace with a constant \code{value}
- * na.roughfix.POSIXct - use with datetime values
+ * na.replace / na.constant - replace with a constant \code{value}
  * na.zero - replace with 0 
 
 
-examples
+## `NA` Imputation 
+
+ * -tk
+
+
+## `NA` Removal
+
+ * na.rm 
+
+
+## `NA` Detections
+
+ * all_na
+ * any_na
+
+
+## Miscellaneous
+
+ * na.roughfix.POSIXct - use with datetime values
+ 
+
+Examples
 ----------
 
     na.replace( c(1,NA,3), 2)
+  
+  
+Installation
+----------
+
+## Github 
+
+    library(devtools)
+    install_github( "decisionpatterns/na.actions")
+    
+## CRAN 
+
+Coming Soon ...
   

@@ -1,6 +1,6 @@
 Package: na.actions
 Title: Functions for Handling NA values
-Version: 0.3.6
+Version: 0.3.7
 Date: 2016-05-10
 Authors@R: "Christopher Brown <chris.brown@decisionpatterns.com> [aut, cre]"
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
