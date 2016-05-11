@@ -1,7 +1,7 @@
 
 ## na.actions: tools for missing values
 
-[![License](http://img.shields.io/badge/R_Bridge-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](http://www.r-pkg.org/badges/version/na.actions)](https://cran.rstudio.com/web/packages/na.actions/index.html)
 [![Downloads](http://cranlogs.r-pkg.org/badges/na.actions?color=brightgreen)](http://www.r-pkg.org/pkg/na.actions)
 
