@@ -1,5 +1,5 @@
-na.actions: tools for NA values
-==========
+
+## na.actions: tools for missing values
 
 [![License](http://img.shields.io/badge/R_Bridge-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![CRAN](http://www.r-pkg.org/badges/version/na.actions)](https://cran.rstudio.com/web/packages/na.actions/index.html)
@@ -14,9 +14,22 @@ and provide a comprehensive tool set for common problems encountered with
 missing values.
 
 
-The curent list of functions is:
+## Installation
 
-## `NA` Replacement and Imputation
+### Github 
+
+    library(devtools)
+    install_github( "decisionpatterns/na.actions")
+    
+### CRAN 
+
+Coming Soon ...
+  
+
+
+## Function List 
+
+### `NA` Replacement and Imputation
  * na.inf / na.neginf - replance na with Inf/-Inf
  * na.loess - use loess smoother for replacement
  * na.max 
@@ -29,42 +42,28 @@ The curent list of functions is:
  * na.zero - replace with 0 
 
 
-## `NA` Imputation 
+### `NA` Imputation 
 
  * -tk
 
 
-## `NA` Removal
+### `NA` Removal
 
  * na.rm 
 
 
-## `NA` Detections
+### `NA` Detections
 
  * all_na
  * any_na
 
 
-## Miscellaneous
+### Miscellaneous
 
  * na.roughfix.POSIXct - use with datetime values
- 
 
-Examples
-----------
+ 
+## Examples
 
     na.replace( c(1,NA,3), 2)
-  
-  
-Installation
-----------
-
-## Github 
-
-    library(devtools)
-    install_github( "decisionpatterns/na.actions")
-    
-## CRAN 
-
-Coming Soon ...
   
