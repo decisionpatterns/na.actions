@@ -1,7 +1,7 @@
 Package: na.actions
-Title: Functions for Handling NA values
-Version: 0.3.7
-Date: 2016-05-10
+Title: Functions for Handling NA Values
+Version: 0.4.0
+Date: 2016-05-15
 Authors@R: "Christopher Brown <chris.brown@decisionpatterns.com> [aut, cre]"
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 URL: http://github.com/decisionpatterns/na.actions
@@ -16,4 +16,3 @@ Suggests:
     testthat
 License: GPL-2
 LazyData: true
-

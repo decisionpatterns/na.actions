@@ -30,8 +30,8 @@ na.rm.data.table <- function(object) {
   wh_nm <- object %>% sapply(all_na) %>% which %>% names
   
   if( length(wh_nm)>0 ) 
-    object[ , `:=`(wh_nm,NULL)]
-    
+    # object[ , c(wh_nm) := NULL ]
+    data.table::set(object, j=wh_nm, value=NULL )
   invisible(object)
   
 }
