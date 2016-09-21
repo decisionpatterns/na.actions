@@ -47,3 +47,9 @@ na.rm.data.frame <- function(object) {
   
 }
 
+
+
+na.rm <- function(object) { 
+  warning("na.rm is deprecated. Use na_rm instead.")
+  na_rm(object)
+}

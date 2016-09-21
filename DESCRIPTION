@@ -1,7 +1,7 @@
 Package: na.actions
-Title: Functions for Handling NA Values
-Version: 0.4.0
-Date: 2016-05-15
+Title: Utilities for working with NA Values
+Version: 0.4.1
+Date: 2016-09-20
 Authors@R: "Christopher Brown <chris.brown@decisionpatterns.com> [aut, cre]"
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 URL: http://github.com/decisionpatterns/na.actions
