@@ -8,6 +8,7 @@
 #'   An object of the same class as \code{data} with rows containing all 
 #'   \code{NA} values removed
 #' 
+#' @rdname drop_na_cols
 #' @export
 
 drop_na_rows <- function(data) {
