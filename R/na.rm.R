@@ -47,9 +47,11 @@ na.rm.data.frame <- function(object) {
   
 }
 
+#' @rdname na.rm
+#' @export 
+na_rm <- na.rm 
 
-
-na.rm <- function(object) { 
-  warning("na.rm is deprecated. Use na_rm instead.")
-  na_rm(object)
-}
+# na.rm <- function(object) { 
+#   warning("na.rm is deprecated. Use na_rm instead.")
+#   na_rm(object)
+# }

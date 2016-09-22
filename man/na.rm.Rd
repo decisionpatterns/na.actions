@@ -2,9 +2,12 @@
 % Please edit documentation in R/na.rm.R
 \name{na.rm}
 \alias{na.rm}
+\alias{na_rm}
 \title{na.rm}
 \usage{
 na.rm(object)
+
+na_rm(object)
 }
 \arguments{
 \item{object}{to remove \code{NA}s from}
