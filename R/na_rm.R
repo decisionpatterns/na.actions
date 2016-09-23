@@ -1,4 +1,4 @@
-#' na.rm 
+#' na_rm 
 #' 
 #' Removes \code{NA} from objects
 #' 
@@ -6,8 +6,8 @@
 #' 
 #' @details 
 #' 
-#' For \strong{vectors} this is the same as \code{\link[stats]{na.omit}} and 
-#' \code{\link[stats]{na.exclude}}.
+#' For \strong{vectors} this is the same as \code{\link[stats]{na_omit}} and 
+#' \code{\link[stats]{na_exclude}}.
 #' 
 #' For \strong{data.frames} and \strong{data.tables} columns that are entirely
 #' \code{NA} are removed.
@@ -18,14 +18,14 @@
 #'   contain solely \code{NA} values.
 #' 
 #' @seealso 
-#'   \code{\link[stats]{na.omit}} \cr
-#'   \code{\link[stats]{na.exclude}} \cr
+#'   \code{\link[stats]{na_omit}} \cr
+#'   \code{\link[stats]{na_exclude}} \cr
 #'   \code{\link{all_na}}
 #' @export
 
-na.rm <- function(object) UseMethod('na.rm')
+na_rm <- function(object) UseMethod('na_rm')
 
-na.rm.data.table <- function(object) { 
+na_rm.data.table <- function(object) { 
 
   wh_nm <- object %>% sapply(all_na) %>% which %>% names
   
@@ -36,7 +36,7 @@ na.rm.data.table <- function(object) {
   
 }
 
-na.rm.data.frame <- function(object) { 
+na_rm.data.frame <- function(object) { 
 
   wh <- object %>% sapply(all_na) %>% which 
 
@@ -47,11 +47,11 @@ na.rm.data.frame <- function(object) {
   
 }
 
-#' @rdname na.rm
+#' @rdname na_rm
 #' @export 
-na_rm <- na.rm 
+na_rm <- na_rm 
 
-# na.rm <- function(object) { 
-#   warning("na.rm is deprecated. Use na_rm instead.")
+# na_rm <- function(object) { 
+#   warning("na_rm is deprecated. Use na_rm instead.")
 #   na_rm(object)
 # }

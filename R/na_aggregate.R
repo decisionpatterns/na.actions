@@ -4,7 +4,7 @@
 #' allows imputing by the overall mean, by monthly means, etc.
 #' 
 #' 
-#' @aliases na.aggregate na.aggregate.default
+#' @aliases na_aggregate na_aggregate.default
 #' @param object an object.
 #' @param by a grouping variable corresponding to \code{object}, or a function
 #' to be applied to \code{time(object)} to generate the groups.
@@ -12,7 +12,7 @@
 #' function.
 #' @param FUN function to apply to the non-missing values in each group defined
 #' by \code{by}.
-#' @param na.rm logical. Should any remaining \code{NA}s be removed?
+#' @param na_rm logical. Should any remaining \code{NA}s be removed?
 #' @param maxgap maximum number of consecutive \code{NA}s to fill. Any longer
 #' gaps will be left unchanged.
 #' @return An object in which each \code{NA} in the input object is replaced by
@@ -21,7 +21,7 @@
 #' aggregation group are a year, a month, all calendar months, etc.
 #' 
 #' If a group has no non-missing values, the default aggregation function
-#' \code{mean} will return \code{NaN}. Specify \code{na.rm = TRUE} to omit such
+#' \code{mean} will return \code{NaN}. Specify \code{na_rm = TRUE} to omit such
 #' remaining missing values.
 #' @seealso \code{\link{zoo}}
 #' @keywords ts
@@ -32,30 +32,30 @@
 #'            as.Date("2010-02-01") + 0:2,
 #'            as.Date("2011-01-01") + 0:2))
 #' ## overall mean
-#' na.aggregate(z)
+#' na_aggregate(z)
 #' ## group by months
-#' na.aggregate(z, as.yearmon)
+#' na_aggregate(z, as.yearmon)
 #' ## group by calendar months
-#' na.aggregate(z, months)
+#' na_aggregate(z, months)
 #' ## group by years
-#' na.aggregate(z, format, "%Y")
+#' na_aggregate(z, format, "%Y")
 #' 
-#' @export na.aggregate
-na.aggregate <- function(object, ...) UseMethod("na.aggregate")
+#' @export na_aggregate
+na_aggregate <- function(object, ...) UseMethod("na_aggregate")
 
 ## fills NA values with some aggregated function of the data.
 ## generalises imputing by the overall mean, by calendar month, etc.
-na.aggregate.default <- function(object, by = 1, ..., FUN = mean, na.rm = FALSE, maxgap = Inf)
+na_aggregate.default <- function(object, by = 1, ..., FUN = mean, na_rm = FALSE, maxgap = Inf)
 {
     if (is.function(by)) by <- by(time(object), ...)
     ## applied to each aggregated group in each series:
     f <- function(x)
         replace(x, is.na(x), FUN(x[!is.na(x)]))
-    na.aggregate.0 <- function(y) {
+    na_aggregate.0 <- function(y) {
         yf <- ave(y, by, FUN = f)
         .fill_short_gaps(y, yf, maxgap = maxgap)
     }
-    object[] <- if (length(dim(object)) == 0) na.aggregate.0(object)
-                else apply(object, 2, na.aggregate.0)
-    if (na.rm) na.trim(object, is.na = "all") else object
+    object[] <- if (length(dim(object)) == 0) na_aggregate.0(object)
+                else apply(object, 2, na_aggregate.0)
+    if (na_rm) na_trim(object, is.na = "all") else object
 }

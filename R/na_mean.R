@@ -1,4 +1,4 @@
-#' na.mean
+#' na_mean
 #' 
 #' Replace \code{NA} values with the mean
 #' 
@@ -13,14 +13,14 @@
 #'   A vector of the same length as \code{x} with \code{NA} replaced by the mean  
 #' 
 #' @seealso 
-#'   \code{\link{na.replace}}, \code{na.median} 
+#'   \code{\link{na_replace}}, \code{na_median} 
 #' @export
 
-na.mean <- function( x, ... ) {
+na_mean <- function( x, ... ) {
   
-  if( ! is.numeric(x) ) stop( "na.mean only works on numeric vectors" ) 
+  if( ! is.numeric(x) ) stop( "na_mean only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- mean( x, na.rm = TRUE, ... )
+  x[ is.na(x) ] <- mean( x, na_rm = TRUE, ... )
   return(x)
   
 }

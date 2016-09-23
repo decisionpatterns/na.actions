@@ -13,7 +13,7 @@
 #' 
 #' Fill \code{NA} or indicated values.
 #' 
-#' @aliases na.fill na.fill.ts na.fill.zoo na.fill.default
+#' @aliases na_fill na_fill.ts na_fill.zoo na_fill.default
 #' @param object an object.
 #' @param fill a three component list or a vector that is coerced to a list.
 #' Shorter objects are recycled.  The three components represent the fill value
@@ -25,29 +25,29 @@
 #' @param ix logical. Should be the same length as the number of time points.
 #' Indicates which time points not to fill. This defaults to the non-NA values.
 #' @param \dots further arguments passed to methods.
-#' @seealso \code{\link{na.approx}}
+#' @seealso \code{\link{na_approx}}
 #' @keywords ts
 #' @examples
 #' 
 #' 
 #' z <- zoo(c(NA, 2, NA, 1, 4, 5, 2, NA))
-#' na.fill(z, "extend")
-#' na.fill(z, c("extend", NA))
-#' na.fill(z, -(1:3))
-#' na.fill(z, list(NA, NULL, NA))
+#' na_fill(z, "extend")
+#' na_fill(z, c("extend", NA))
+#' na_fill(z, -(1:3))
+#' na_fill(z, list(NA, NULL, NA))
 #' 
 #' 
-#' @export na.fill
-na.fill <- function(object, fill, ...) UseMethod("na.fill")
+#' @export na_fill
+na_fill <- function(object, fill, ...) UseMethod("na_fill")
 
-na.fill.zoo <- function(object, fill, ix, ...) {
+na_fill.zoo <- function(object, fill, ix, ...) {
 
 	if (length(dim(object)) == 2 && NCOL(object) > 1) {
 		ixmiss <- missing(ix)
 		L <- lapply(1:NCOL(object), 
 				function(i) {
 					if (ixmiss) ix <- !is.na(object[,i])
-					na.fill(object[,i], fill, ix, ...)
+					na_fill(object[,i], fill, ix, ...)
 				})
 		out <- do.call("merge", c(L, all = FALSE))
 		colnames(out) <- colnames(object)
@@ -108,11 +108,11 @@ na.fill.zoo <- function(object, fill, ix, ...) {
 
 }
 
-na.fill.default <- function(object, fill, ix, ...) {
-	coredata(na.fill(zoo(object), fill, ix, ...))
+na_fill.default <- function(object, fill, ix, ...) {
+	coredata(na_fill(zoo(object), fill, ix, ...))
 }
 	
-na.fill.ts <- function(object, fill, ix, ...) {
-	as.ts(na.fill(as.zoo(object), fill, ix, ...))
+na_fill.ts <- function(object, fill, ix, ...) {
+	as.ts(na_fill(as.zoo(object), fill, ix, ...))
 }
 

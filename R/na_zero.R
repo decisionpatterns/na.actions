@@ -1,4 +1,4 @@
-#' na.zero 
+#' na_zero 
 #'
 #' Replaces \code{NA}s by 0. 
 #'
@@ -11,15 +11,15 @@
 #' \code{x} with \code{NA}s replaced by 0.
 #' 
 #' @seealso 
-#'   \code{\link{na.replace}} \cr
-#'   \code{\link{na.constant}} 
+#'   \code{\link{na_replace}} \cr
+#'   \code{\link{na_constant}} 
 #'  
-#' @rdname na.zero
+#' @rdname na_zero
 #' @export
 
-na.zero<- function(x) {
+na_zero<- function(x) {
   
-  if( ! is.numeric(x) ) stop( "na.zero : x must be numeric")
+  if( ! is.numeric(x) ) stop( "na_zero : x must be numeric")
   
   x[ is.na( x ) ] <- 0
   return(x)

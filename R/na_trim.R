@@ -3,7 +3,7 @@
 #' Generic function for removing leading and trailing \code{NA}s.
 #' 
 #' 
-#' @aliases na.trim na.trim.default na.trim.ts
+#' @aliases na_trim na_trim.default na_trim.ts
 #' @param object an object.
 #' @param sides character specifying whether \code{NA}s are to be removed from
 #' both sides, just from the left side or just from the right side.
@@ -14,29 +14,29 @@
 #' @param \dots further arguments passed to methods.
 #' @return An object in which leading and/or trailing \code{NA}s have been
 #' removed.
-#' @seealso \code{\link{na.approx}}, \code{\link{na.contiguous}},
-#' \code{\link{na.locf}}, \code{\link{na.omit}}, \code{\link{na.spline}},
+#' @seealso \code{\link{na_approx}}, \code{\link{na_contiguous}},
+#' \code{\link{na_locf}}, \code{\link{na_omit}}, \code{\link{na_spline}},
 #' \code{\link[stinepack]{stinterp}}, \code{\link{zoo}}
 #' @keywords ts
 #' @examples
 #' 
-#' # examples of na.trim
+#' # examples of na_trim
 #' x <- zoo(c(1, 4, 6), c(2, 4, 6))
 #' xx <- zoo(matrix(c(1, 4, 6, NA, 5, 7), 3), c(2, 4, 6))
-#' na.trim(x)
-#' na.trim(xx)
+#' na_trim(x)
+#' na_trim(xx)
 #' 
-#' # using na.trim for alignment
+#' # using na_trim for alignment
 #' # cal defines the legal dates
 #' # all dates within the date range of x should be present
 #' cal <- zoo(,c(1, 2, 3, 6, 7))
 #' x <- zoo(c(12, 16), c(2, 6))
-#' na.trim(merge(x, cal))
+#' na_trim(merge(x, cal))
 #' 
 #' 
-#' @export na.trim
-na.trim <- function(object, ...) UseMethod("na.trim")
-na.trim.default <- function (object, sides = c("both", "left", "right"), 
+#' @export na_trim
+na_trim <- function(object, ...) UseMethod("na_trim")
+na_trim.default <- function (object, sides = c("both", "left", "right"), 
 	is.na = c("any", "all"), ...)
 {
    is.na <- match.arg(is.na)
@@ -53,7 +53,7 @@ na.trim.default <- function (object, sides = c("both", "left", "right"),
 }
 
 ## need a 'ts' method because indexing destroys ts attributes
-na.trim.ts <- function (object, ...)
+na_trim.ts <- function (object, ...)
 {
-    as.ts(na.trim(as.zoo(object), ...))
+    as.ts(na_trim(as.zoo(object), ...))
 }

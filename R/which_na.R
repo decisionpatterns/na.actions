@@ -19,11 +19,11 @@ which_na <- function(x) UseMethod('which_na')
 
 #' @rdname which_na
 #' @export
-which_na.default <- function(x)
+which_na_default <- function(x)
   which( is.na(x) )
 
 
 #' @rdname which_na
 #' @export
-which_na.data.frame <- function(x)
+which_na_data.frame <- function(x)
   names(x)[ sapply( x, anyNA ) ]

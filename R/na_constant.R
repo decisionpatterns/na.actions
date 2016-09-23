@@ -1,4 +1,4 @@
-#' na.constant 
+#' na_constant 
 #'
 #' Replaces \code{NA}s by a constant 
 #'
@@ -14,18 +14,18 @@
 #'   \code{x} with \code{NA}s replaced by \code{value}.
 #' 
 #' @seealso
-#'   \code{\link{na.replace}}  \cr
-#'   \code{\link{na.zero}} - a special case \cr
+#'   \code{\link{na_replace}}  \cr
+#'   \code{\link{na_zero}} - a special case \cr
 #' 
 #' @examples 
-#'   na.constant( c(1,NA,2), -1 )
+#'   na_constant( c(1,NA,2), -1 )
 #' 
-#' @rdname na.constant
+#' @rdname na_constant
 #' @export
 
-na.constant<- function(x, value) {
+na_constant<- function(x, value) {
   
-  if( ! is.numeric(x) ) stop( "na.constant : x must be numeric")
+  if( ! is.numeric(x) ) stop( "na_constant : x must be numeric")
   
   x[ is.na( x ) ] <- value
   return(x)

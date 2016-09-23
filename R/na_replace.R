@@ -10,17 +10,17 @@
 #' 
 #' @return \code{x} with \code{NA}s replaced by \code{value}.
 #' 
-#' @rdname na.replace
+#' @rdname na_replace
 #' @export
 
-na.replace <- function(x, value=0) {
+na_replace <- function(x, value=0) {
   x[ is.na( x ) ] <- value
   return(x)
 }
 
-#' @rdname na.replace
+#' @rdname na_replace
 #' @export
 na_replace <- function(x, value = 0 ) {
-  # warning( "na_replace has been renamed to na.replace. Please change your code.")
-  na.replace( x, value)
+  # warning( "na_replace has been renamed to na_replace. Please change your code.")
+  na_replace( x, value)
 }

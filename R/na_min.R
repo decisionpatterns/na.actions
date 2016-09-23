@@ -1,4 +1,4 @@
-#' na.min
+#' na_min
 #' 
 #' Replace \code{NA} values with the min
 #' 
@@ -12,14 +12,14 @@
 #'   A vector of the same length as \code{x} with \code{NA} replaced by the min  
 #' 
 #' @seealso 
-#'   \code{\link{na.replace}}, \code{\link{na.max}} 
+#'   \code{\link{na_replace}}, \code{\link{na_max}} 
 #' @export
 
-na.min <- function( x ) {
+na_min <- function( x ) {
   
-  if( ! is.numeric(x) ) stop( "na.min only works on numeric vectors" ) 
+  if( ! is.numeric(x) ) stop( "na_min only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- min( x, na.rm = TRUE )
+  x[ is.na(x) ] <- min( x, na_rm = TRUE )
   return(x)
   
 }

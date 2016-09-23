@@ -1,4 +1,4 @@
-#' na.median
+#' na_median
 #' 
 #' Replace \code{NA} values with the median
 #' 
@@ -9,13 +9,13 @@
 #'   median  
 #' 
 #' @seealso 
-#'   \code{\link{na.replace}}, \code{\link{na.mean}} 
+#'   \code{\link{na_replace}}, \code{\link{na_mean}} 
 
-na.median <- function(x) {
+na_median <- function(x) {
   
-  if( ! is.numeric(x) ) stop( "na.media only works on numeric vectors" ) 
+  if( ! is.numeric(x) ) stop( "na_media only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- median( x, na.rm = TRUE )
+  x[ is.na(x) ] <- median( x, na_rm = TRUE )
   return(x)
   
 }

@@ -1,4 +1,4 @@
-#' na.predict
+#' na_predict
 #' 
 #' replace \code{NA} values by predictions of a model
 #' 
@@ -8,7 +8,7 @@
 #' 
 #' @export
 
-na.predict <- function( x, object, data=x ) { 
+na_predict <- function( x, object, data=x ) { 
 
   if( length(x)  != nrow(data) ) stop()
   

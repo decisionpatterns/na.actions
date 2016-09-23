@@ -1,4 +1,4 @@
-#' na.loess
+#' na_loess
 #' 
 #' Replace \code{NA} with loess model
 #' 
@@ -15,15 +15,15 @@
 #'   
 #'   x <- 1:101 
 #'   x[ seq(20,80,5)] <- NA
-#'   na.loess(x)
+#'   na_loess(x)
 #' 
 #' @note
 #'   This does not follow function naming conventions in order to more closely 
-#'   resembling existing \code{na.*} functions
+#'   resembling existing \code{na_*} functions
 #'      
 #' @export
 
-na.loess <- function( object , ... ) {
+na_loess <- function( object , ... ) {
   
   df <- data.frame(y=object, x=1:length(object) )
   fit <- loess( y ~ x, df, ...  )

@@ -1,4 +1,4 @@
-#' na.max
+#' na_max
 #' 
 #' Replace \code{NA} values with the max
 #' 
@@ -12,14 +12,14 @@
 #'   A vector of the same length as \code{x} with \code{NA} replaced by the max  
 #' 
 #' @seealso 
-#'   \code{\link{na.replace}}, \code{\link{na.min}} 
+#'   \code{\link{na_replace}}, \code{\link{na_min}} 
 #' @export
 
-na.max <- function( x ) {
+na_max <- function( x ) {
   
-  if( ! is.numeric(x) ) stop( "na.max only works on numeric vectors" ) 
+  if( ! is.numeric(x) ) stop( "na_max only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- max( x, na.rm = TRUE )
+  x[ is.na(x) ] <- max( x, na_rm = TRUE )
   return(x)
   
 }
