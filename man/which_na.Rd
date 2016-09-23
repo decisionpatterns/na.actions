@@ -2,15 +2,15 @@
 % Please edit documentation in R/which_na.R
 \name{which_na}
 \alias{which_na}
-\alias{which_na.data.frame}
-\alias{which_na.default}
+\alias{which_na_data.frame}
+\alias{which_na_default}
 \title{which_na: Identify missing values}
 \usage{
 which_na(x)
 
-\method{which_na}{default}(x)
+which_na_default(x)
 
-\method{which_na}{data.frame}(x)
+which_na_data.frame(x)
 }
 \arguments{
 \item{x}{Vector to search for missing values}
