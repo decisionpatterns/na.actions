@@ -20,7 +20,7 @@ na_replace <- function(x, value=0) {
 
 #' @rdname na_replace
 #' @export
-na_replace <- function(x, value = 0 ) {
-  # warning( "na_replace has been renamed to na_replace. Please change your code.")
+na.replace <- function(x, value = 0 ) {
+  warning( "na.replace has been renamed to na_replace. Please change your code.")
   na_replace( x, value)
 }

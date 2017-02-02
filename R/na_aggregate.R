@@ -1,10 +1,8 @@
-#' Replace NA by Aggregation
+#' Replace NA by aggregation
 #' 
 #' Generic function for replacing each \code{NA} with aggregated values. This
 #' allows imputing by the overall mean, by monthly means, etc.
 #' 
-#' 
-#' @aliases na_aggregate na_aggregate.default
 #' @param object an object.
 #' @param by a grouping variable corresponding to \code{object}, or a function
 #' to be applied to \code{time(object)} to generate the groups.
@@ -23,8 +21,10 @@
 #' If a group has no non-missing values, the default aggregation function
 #' \code{mean} will return \code{NaN}. Specify \code{na_rm = TRUE} to omit such
 #' remaining missing values.
-#' @seealso \code{\link{zoo}}
-#' @keywords ts
+#' 
+#' @seealso 
+#'   \code{\link{zoo}}
+#'   
 #' @examples
 #' 
 #' z <- zoo(c(1, NA, 3:9),
@@ -40,7 +40,9 @@
 #' ## group by years
 #' na_aggregate(z, format, "%Y")
 #' 
+#' @aliases na_aggregate na_aggregate.default
 #' @export na_aggregate
+
 na_aggregate <- function(object, ...) UseMethod("na_aggregate")
 
 ## fills NA values with some aggregated function of the data.

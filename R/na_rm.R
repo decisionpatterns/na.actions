@@ -20,14 +20,14 @@
 #' @seealso 
 #'   \code{\link[stats]{na_omit}} \cr
 #'   \code{\link[stats]{na_exclude}} \cr
-#'   \code{\link{all_na}}
+#'   \code{\link{na_all}}
 #' @export
 
 na_rm <- function(object) UseMethod('na_rm')
 
 na_rm.data.table <- function(object) { 
 
-  wh_nm <- object %>% sapply(all_na) %>% which %>% names
+  wh_nm <- object %>% sapply(na_all) %>% which %>% names
   
   if( length(wh_nm)>0 ) 
     # object[ , c(wh_nm) := NULL ]
@@ -38,7 +38,7 @@ na_rm.data.table <- function(object) {
 
 na_rm.data.frame <- function(object) { 
 
-  wh <- object %>% sapply(all_na) %>% which 
+  wh <- object %>% sapply(na_all) %>% which 
 
   if( length(wh)>0 ) 
     object <- object[ , -wh ]

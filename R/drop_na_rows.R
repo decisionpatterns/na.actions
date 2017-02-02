@@ -12,5 +12,5 @@
 #' @export
 
 drop_na_rows <- function(data) {
-  data[ ! apply( data, 1, all_na ), ]
+  data[ ! apply( data, 1, na_all ), ]
 }

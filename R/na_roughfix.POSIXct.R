@@ -10,7 +10,7 @@ na_roughfix.POSIXct <- function(object) {
   wh <- dts[dts]
   for( w in names(wh) ) {
     x <- object[[w]]
-    if( any_na(x) ) 
+    if( na_any(x) ) 
       object[[w]] <- na_replace( x, median(x, na_rm=TRUE ))
     
   }
