@@ -6,11 +6,16 @@
 #' 
 #' @details 
 #' 
-#' Implemented as: . %>% is.na %>% any
+#' Implemented as: . %>% anyNA
+#' 
+#' For data.tables: . %>% is.na %>% any %>% any 
+#' 
+#' Reports if any column has an \code{NA},
 #' 
 #' @seealso 
+#'   \code{\link[base]{anyNA}} \cr
 #'   \code{\link{na_all}} \cr
-#'   \code{which_na}
+#'   \code{which_na} \cr
 #'   
 #' @examples
 #'   na_any( 1:10 )           # FALSE
@@ -27,7 +32,7 @@ na_any <- function(x) UseMethod("na_any")
 #' @export
 
 na_any.default <- function(x)
-   any( is.na( x ) )
+   anyNA(x)
 
 
 #' @return \code{logical}
@@ -37,3 +42,9 @@ na_any.default <- function(x)
 #' @export
 na_any.data.frame <- function(x)
   any( sapply( x, na_any ) )
+
+
+#' @rdname na_any
+#' @export 
+
+any_na <- na_any

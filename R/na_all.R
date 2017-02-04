@@ -1,16 +1,25 @@
-#' Determine if all values are mission
+#' Determine if all values are missing
 #' 
 #' Determines if any of the values in a data structure are missing  
 #'
 #' @details 
 #' Implemented as: . %>% is.na %>% all
 #' 
-#' @name na_all
+#' For data.frames: 
+#' 
+#'      . %>% sapply( na_all ) %>% any 
+#'      
+#' That is, reports if any columns are have all na's. This may change. 
+#' 
+#' \code{all_na} is a copy of \code{na_all}.
+#' 
+#' \code{all}
+#' 
 #' @param x any object
 #' 
 #' @seealso 
-#'   \code{\link{na_all}} \cr
-#'   \code{\link{which_na}}
+#'   \code{\link{na_any}} \cr
+#'   \code{\link{na_which}}
 #'
 #' @examples
 #'   na_all( c( NA, NA, 1 ) ) # FALSE
@@ -37,3 +46,10 @@ na_all.default <- function(x)
 #' @export
 na_all.data.frame <- function(x)
   any( sapply( x, na_all ) )
+
+
+#' @rdname na_all 
+#' @export
+
+all_na <- na_all
+
