@@ -8,10 +8,14 @@
 #' @return a object with NA's replaced by the next occuring value in the sequence
 #' @seealso
 #'   \code{\link[zoo]{na_locf}} 
-#'
+#'   
+#' @examples 
+#' 
+#'   na_nocb( c(NA,1:3))
+#' 
+#' @import zoo
 #' @export  
     
 na_nocb <- function( object , ... ) {
-  require(zoo)
-  zoo::na_locf( object, fromLast=TRUE, ...)
+  zoo::na.locf( object, fromLast=TRUE, ...)
 }

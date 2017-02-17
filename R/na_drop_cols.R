@@ -10,6 +10,11 @@
 #' 
 #' @export
 
-drop_na_cols <- function(data) {
+na_drop_cols <- function(data) {
   data[ , ! apply( data, 2, na_all ) ]
 }
+
+#' @rdname na_drop_cols 
+#' @export 
+
+drop_na_cols <- na_drop_cols

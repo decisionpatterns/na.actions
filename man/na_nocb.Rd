@@ -19,6 +19,11 @@ a object with NA's replaced by the next occuring value in the sequence
 \description{
 na_nocb (_N_ext _O_bservation _C_arried _B_ack )
 }
+\examples{
+
+  na_nocb( c(NA,1:3))
+
+}
 \seealso{
 \code{\link[zoo]{na_locf}}
 }
