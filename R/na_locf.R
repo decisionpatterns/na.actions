@@ -5,6 +5,7 @@
 #' 
 #' 
 #' @aliases na_locf na_locf.data.frame na_locf.list na_locf.default
+#' 
 #' @param object an object.
 #' @param na_rm logical. Should leading \code{NA}s be removed?
 #' @param fromLast logical. Causes observations to be carried backward rather
@@ -117,52 +118,79 @@
 #' 
 #' 
 #' 
-#' @export na_locf
-na_locf <- function(object, na_rm = TRUE, ...)
-	UseMethod("na_locf")
+#' @export 
 
-na_locf.default <- function(object, na_rm = TRUE, fromLast, rev, maxgap = Inf, rule = 2, ...) {
+na_locf <- function(object, na_rm = TRUE, ...) UseMethod("na_locf")
 
-	L <- list(...)
-	if ("x" %in% names(L) || "xout" %in% names(L)) {
+#' @rdname na_locf
+#' @export 
 
-		if (!missing(fromLast)) {
-			stop("fromLast not supported if x or xout is specified")
-		}
-		return(na_approx(object, na_rm = na_rm, 
-			maxgap = maxgap, method = "constant", rule = rule, ...))
-	}
+na_locf.default <-
+  function(object,
+           na_rm = TRUE,
+           fromLast,
+           rev,
+           maxgap = Inf,
+           rule = 2,
+           ...
+  ) {
+    L <- list(...)
+    if ("x" %in% names(L) || "xout" %in% names(L)) {
+      if (!missing(fromLast)) {
+        stop("fromLast not supported if x or xout is specified")
+      }
+      return(
+        na_approx(
+          object,
+          na_rm = na_rm,
+          maxgap = maxgap,
+          method = "constant",
+          rule = rule,
+          ...
+        )
+      )
+    }
+    
+    na_locf.0 <- function(x) {
+      L <- !is.na(x)
+      idx <- if (fromLast)
+        rev(c(NA, rev(which(L)))[cumsum(rev(L)) + 1])
+      else
+        c(NA, which(L))[cumsum(L) + 1]
+      # na_index(x,i) returns x[i] except if i[j] is NA then
+      # x[i[j]] is NA too
+      na_index <- function(x, i) {
+        L <- !is.na(i)
+        x[!L] <- NA
+        x[L] <- coredata(x)[i[L]]
+        x
+      }
+      xf <- na_index(x, idx)
+      .fill_short_gaps(x, xf, maxgap = maxgap)
+    }
+    if (!missing(rev)) {
+      warning("na_locf.default: rev= deprecated. Use fromLast= instead.")
+      if (missing(fromLast))
+        fromLast <- rev
+    } else if (missing(fromLast))
+      fromLast <- FALSE
+    rev <- base::rev
+    object[] <- if (length(dim(object)) == 0)
+      na_locf.0(object)
+    else
+      apply(object, length(dim(object)), na_locf.0)
+    if (na_rm)
+      na_trim(object, is.na = "all")
+    else
+      object
+  }
 
-	na_locf.0 <- function(x) {
-	      L <- !is.na(x)
-	      idx <- if (fromLast)
-	         rev(c(NA,rev(which(L)))[cumsum(rev(L))+1])
-              else
-	         c(NA,which(L))[cumsum(L)+1]
-	      # na_index(x,i) returns x[i] except if i[j] is NA then
-	      # x[i[j]] is NA too
-	      na_index <- function(x, i) {
-		L <- !is.na(i)
-		x[!L] <- NA
-		x[L] <- coredata(x)[i[L]]
-	  	x
-	      }
-	      xf <- na_index(x, idx)
-              .fill_short_gaps(x, xf, maxgap = maxgap)
-	}
-   	if (!missing(rev)) {
-	   warning("na_locf.default: rev= deprecated. Use fromLast= instead.")
-	   if (missing(fromLast)) fromLast <- rev
-	} else if (missing(fromLast)) fromLast <- FALSE
-	rev <- base::rev
-	object[] <- if (length(dim(object)) == 0)
-		na_locf.0(object)
-	else
-		apply(object, length(dim(object)), na_locf.0)
-	if (na_rm) na_trim(object, is.na = "all") else object
-}
-
+#' @rdname na_locf
+#' @export 
 na_contiguous.data.frame <-
+  
+#' @rdname na_locf
+#' @export   
 na_contiguous.zoo <- function(object, ...) 
 {
     if (length(dim(object)) == 2) 
@@ -196,6 +224,10 @@ na_contiguous.zoo <- function(object, ...)
     }
     object
 }
+
+#' @rdname na_locf
+#' @export 
+
 
 na_contiguous.list <- function(object, ...)
 	lapply(object, na_contiguous)

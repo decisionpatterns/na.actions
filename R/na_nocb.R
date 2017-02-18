@@ -13,9 +13,8 @@
 #' 
 #'   na_nocb( c(NA,1:3))
 #' 
-#' @import zoo
 #' @export  
     
 na_nocb <- function( object , ... ) {
-  zoo::na.locf( object, fromLast=TRUE, ...)
+  na_locf( object, fromLast=TRUE, ...)
 }
