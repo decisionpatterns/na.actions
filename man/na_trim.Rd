@@ -11,6 +11,8 @@ na_trim(object, ...)
 \arguments{
 \item{object}{an object.}
 
+\item{\dots}{further arguments passed to methods.}
+
 \item{sides}{character specifying whether \code{NA}s are to be removed from
 both sides, just from the left side or just from the right side.}
 
@@ -18,8 +20,6 @@ both sides, just from the left side or just from the right side.}
 \code{NA}s.  If "all" then a row will be regarded as \code{NA} only if all
 elements in the row are \code{NA}.  For one dimensional zoo objects this
 argument has no effect.}
-
-\item{\dots}{further arguments passed to methods.}
 }
 \value{
 An object in which leading and/or trailing \code{NA}s have been
@@ -42,8 +42,7 @@ na_trim(xx)
 cal <- zoo(,c(1, 2, 3, 6, 7))
 x <- zoo(c(12, 16), c(2, 6))
 na_trim(merge(x, cal))
-
-
+ 
 }
 \seealso{
 \code{\link{na_approx}}, \code{\link{na_contiguous}},
@@ -51,4 +50,3 @@ na_trim(merge(x, cal))
 \code{\link[stinepack]{stinterp}}, \code{\link{zoo}}
 }
 \keyword{ts}
-

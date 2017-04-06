@@ -23,4 +23,3 @@ a default, \code{0}.
 \code{\link{na_replace}} \cr
   \code{\link{na_constant}}
 }
-

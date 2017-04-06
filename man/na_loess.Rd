@@ -31,4 +31,3 @@ This does not follow function naming conventions in order to more closely
   na_loess(x)
 
 }
-

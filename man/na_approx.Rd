@@ -2,21 +2,24 @@
 % Please edit documentation in R/na_approx.R
 \name{na_approx}
 \alias{na_approx}
-\alias{na_approx.default}
-\alias{na_approx.ts}
 \alias{na_approx.zoo}
 \alias{na_approx.zooreg}
+\alias{na_approx.ts}
+\alias{na_approx.default}
 \alias{na_spline}
-\alias{na_spline.default}
-\alias{na_spline.ts}
 \alias{na_spline.zoo}
 \alias{na_spline.zooreg}
+\alias{na_spline.ts}
+\alias{na_spline.default}
 \title{Replace NA by Interpolation}
 \usage{
 na_approx(object, ...)
 }
 \arguments{
 \item{object}{object in which \code{NA}s are to be replaced}
+
+\item{\dots}{further arguments passed to methods. The \code{n} argument of
+\code{\link{approx}} is currently not supported.}
 
 \item{x, xout}{Variables to be used for interpolation as in
 \code{\link{approx}}.}
@@ -29,9 +32,6 @@ gaps will be left unchanged. Note that all methods listed above can accept
 \code{maxgap} as it is ultimately passed to the \code{default} method.}
 
 \item{along}{deprecated.}
-
-\item{\dots}{further arguments passed to methods. The \code{n} argument of
-\code{\link{approx}} is currently not supported.}
 }
 \value{
 An object of similar structure as \code{object} with (internal)
@@ -150,4 +150,3 @@ if(require("chron")) {
 \code{\link[stinepack]{stinterp}}
 }
 \keyword{ts}
-

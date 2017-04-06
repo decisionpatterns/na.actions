@@ -29,4 +29,3 @@ Replaces \code{NA} values in the supplied vector with a default,
 \code{\link{na_replace}}  \cr
   \code{\link{na_zero}} - a special case \cr
 }
-

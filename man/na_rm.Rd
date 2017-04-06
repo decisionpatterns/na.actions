@@ -2,6 +2,7 @@
 % Please edit documentation in R/na_rm.R
 \name{na_rm}
 \alias{na_rm}
+\alias{na_rm}
 \title{na_rm}
 \usage{
 na_rm(object)
@@ -31,4 +32,3 @@ For \strong{data.frames} and \strong{data.tables} columns that are entirely
   \code{\link[stats]{na_exclude}} \cr
   \code{\link{na_all}}
 }
-

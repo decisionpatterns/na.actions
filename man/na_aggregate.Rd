@@ -10,11 +10,11 @@ na_aggregate(object, ...)
 \arguments{
 \item{object}{an object.}
 
-\item{by}{a grouping variable corresponding to \code{object}, or a function
-to be applied to \code{time(object)} to generate the groups.}
-
 \item{\dots}{further arguments passed to \code{by} if \code{by} is a
 function.}
+
+\item{by}{a grouping variable corresponding to \code{object}, or a function
+to be applied to \code{time(object)} to generate the groups.}
 
 \item{FUN}{function to apply to the non-missing values in each group defined
 by \code{by}.}
@@ -57,4 +57,3 @@ na_aggregate(z, format, "\%Y")
 \seealso{
 \code{\link{zoo}}
 }
-

@@ -16,4 +16,3 @@ na_predict(x, object, data = x)
 \description{
 replace \code{NA} values by predictions of a model
 }
-

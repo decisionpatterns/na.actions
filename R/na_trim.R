@@ -2,8 +2,6 @@
 #' 
 #' Generic function for removing leading and trailing \code{NA}s.
 #' 
-#' 
-#' @aliases na_trim na_trim.default na_trim.ts
 #' @param object an object.
 #' @param sides character specifying whether \code{NA}s are to be removed from
 #' both sides, just from the left side or just from the right side.
@@ -12,11 +10,14 @@
 #' elements in the row are \code{NA}.  For one dimensional zoo objects this
 #' argument has no effect.
 #' @param \dots further arguments passed to methods.
+#' 
 #' @return An object in which leading and/or trailing \code{NA}s have been
 #' removed.
+#' 
 #' @seealso \code{\link{na_approx}}, \code{\link{na_contiguous}},
 #' \code{\link{na_locf}}, \code{\link{na_omit}}, \code{\link{na_spline}},
 #' \code{\link[stinepack]{stinterp}}, \code{\link{zoo}}
+#' 
 #' @keywords ts
 #' @examples
 #' 
@@ -32,10 +33,13 @@
 #' cal <- zoo(,c(1, 2, 3, 6, 7))
 #' x <- zoo(c(12, 16), c(2, 6))
 #' na_trim(merge(x, cal))
-#' 
-#' 
+#'  
+#' @aliases na_trim na_trim.default na_trim.ts
+#' @import zoo 
 #' @export na_trim
+
 na_trim <- function(object, ...) UseMethod("na_trim")
+
 na_trim.default <- function (object, sides = c("both", "left", "right"), 
 	is.na = c("any", "all"), ...)
 {

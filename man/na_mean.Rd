@@ -24,4 +24,3 @@ Replace \code{NA} values with the mean
 \seealso{
 \code{\link{na_replace}}, \code{na_median}
 }
-

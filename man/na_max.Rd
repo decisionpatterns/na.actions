@@ -22,4 +22,3 @@ Replace \code{NA} values with the max
 \seealso{
 \code{\link{na_replace}}, \code{\link{na_min}}
 }
-

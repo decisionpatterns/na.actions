@@ -31,4 +31,3 @@ a default, \code{value}.
 \seealso{
 \code{\link{na_replace}}
 }
-

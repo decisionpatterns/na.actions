@@ -2,8 +2,8 @@
 % Please edit documentation in R/na_which.R
 \name{na_which}
 \alias{na_which}
-\alias{na_which_data.frame}
 \alias{na_which_default}
+\alias{na_which_data.frame}
 \alias{which_na}
 \title{na_which: Identify missing values}
 \usage{
@@ -35,4 +35,3 @@ For data.frames:
   x <- c( 1, NA, NA, 3:6 )
   na_which(x)
 }
-

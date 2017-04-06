@@ -19,4 +19,3 @@ Replace \code{NA} values with the median
 \seealso{
 \code{\link{na_replace}}, \code{\link{na_mean}}
 }
-

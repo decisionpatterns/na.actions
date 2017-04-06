@@ -12,4 +12,3 @@ na_roughfix.POSIXct(object)
 \description{
 na_roughfix.POXIXct - replace a date/time field
 }
-

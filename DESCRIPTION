@@ -1,7 +1,7 @@
 Package: na.actions
 Title: Utilities for working with NA Values
-Version: 0.4.8
-Date: 2017-03-09
+Version: 0.4.9
+Date: 2017-04-06
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
@@ -18,6 +18,5 @@ Imports:
     zoo (>= 1.7.13)
 License: GPL-2 | File
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1.9000
 Repository: CRAN 
-

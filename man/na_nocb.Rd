@@ -27,4 +27,3 @@ na_nocb (_N_ext _O_bservation _C_arried _B_ack )
 \seealso{
 \code{\link[zoo]{na_locf}}
 }
-

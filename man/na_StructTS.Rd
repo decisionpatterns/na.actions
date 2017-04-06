@@ -2,8 +2,8 @@
 % Please edit documentation in R/na_StructTS.R
 \name{na_StructTS}
 \alias{na_StructTS}
-\alias{na_StructTS.ts}
 \alias{na_StructTS.zoo}
+\alias{na_StructTS.ts}
 \title{Fill NA or specified positions.}
 \usage{
 na_StructTS(object, ...)
@@ -44,4 +44,3 @@ plot(cbind(z, zout), screen = 1, col = 1:2, type = c("l", "p"), pch = 20)
 \code{\link{na_approx}}
 }
 \keyword{ts}
-

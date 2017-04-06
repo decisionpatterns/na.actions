@@ -2,9 +2,9 @@
 % Please edit documentation in R/na_fill.R
 \name{na_fill}
 \alias{na_fill}
-\alias{na_fill.default}
 \alias{na_fill.ts}
 \alias{na_fill.zoo}
+\alias{na_fill.default}
 \title{Fill NA or specified positions.}
 \usage{
 na_fill(object, fill, ...)
@@ -20,10 +20,10 @@ the data, respectively.  The value of any component may be the keyword
 value or linear interpolation in the interior.  \code{NULL} means that items
 are dropped rather than filled.}
 
+\item{\dots}{further arguments passed to methods.}
+
 \item{ix}{logical. Should be the same length as the number of time points.
 Indicates which time points not to fill. This defaults to the non-NA values.}
-
-\item{\dots}{further arguments passed to methods.}
 }
 \description{
 Generic function for filling \code{NA} values or specified positions.
@@ -46,4 +46,3 @@ na_fill(z, list(NA, NULL, NA))
 \code{\link{na_approx}}
 }
 \keyword{ts}
-
