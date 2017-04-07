@@ -40,6 +40,8 @@
 
 na_trim <- function(object, ...) UseMethod("na_trim")
 
+#' @export 
+
 na_trim.default <- function (object, sides = c("both", "left", "right"), 
 	is.na = c("any", "all"), ...)
 {
@@ -57,6 +59,8 @@ na_trim.default <- function (object, sides = c("both", "left", "right"),
 }
 
 ## need a 'ts' method because indexing destroys ts attributes
+
+#' @export
 na_trim.ts <- function (object, ...)
 {
     as.ts(na_trim(as.zoo(object), ...))

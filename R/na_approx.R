@@ -127,6 +127,9 @@
 #' @export na_approx
 na_approx <- function(object, ...) UseMethod("na_approx")
 
+
+#' @export 
+
 na_approx.zoo <- function(object, x = index(object), xout, ..., na_rm = TRUE, along) {
 
     if (!missing(along)) {
@@ -167,12 +170,13 @@ na_approx.zoo <- function(object, x = index(object), xout, ..., na_rm = TRUE, al
 
 }
 
+#' @export 
 na_approx.zooreg <- function(object, ...) {
     object. <- structure(object, class = setdiff(class(object), "zooreg"))
     as.zooreg(na_approx(object., ...))
 }
 
-
+#' @export 
 na_approx.default <- function(object, x = index(object), xout = x, ..., na_rm = TRUE, maxgap = Inf, along) {
 
     if (!missing(along)) {
@@ -220,9 +224,11 @@ na_approx.default <- function(object, x = index(object), xout = x, ..., na_rm = 
 
 }
 
+#' @export 
 na_approx.ts <- function(object, ...) {
     as.ts(na_approx(as.zoo(object), ...))
 }
+
 
 ## x = series with gaps
 ## fill = same series with filled gaps

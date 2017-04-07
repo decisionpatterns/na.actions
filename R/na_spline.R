@@ -1,5 +1,7 @@
+#' @export
 na_spline <- function(object, ...) UseMethod("na_spline")
 
+#' @export
 na_spline.zoo <- function(object, x = index(object), xout, ..., na_rm = TRUE, along) {
 
     if (!missing(along)) {
@@ -40,12 +42,14 @@ na_spline.zoo <- function(object, x = index(object), xout, ..., na_rm = TRUE, al
 
 }
 
+#' @export
 na_spline.zooreg <- function(object, ...) {
     object. <- structure(object, class = setdiff(class(object), "zooreg"))
     as.zooreg(na_spline(object., ...))
 }
 
 
+#' @export
 na_spline.default <- function(object, x = index(object), xout = x, ..., na_rm = TRUE, maxgap = Inf, along) {
 
     if (!missing(along)) {
@@ -92,6 +96,7 @@ na_spline.default <- function(object, x = index(object), xout = x, ..., na_rm = 
 
 }
 
+#' @export
 na_spline.ts <- function(object, ...) {
     as.ts(na_spline(as.zoo(object), ...))
 }

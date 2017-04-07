@@ -30,6 +30,7 @@
 #' @export na_StructTS
 na_StructTS <- function(object, ...) UseMethod("na_StructTS")
 
+#' @export
 na_StructTS.ts <- function(object, ..., na_rm = FALSE, maxgap = Inf)
 {
 	print("entering ts method")
@@ -44,6 +45,7 @@ na_StructTS.ts <- function(object, ..., na_rm = FALSE, maxgap = Inf)
     if (na_rm) na_trim(object, is.na = "all") else object
 }
 
+#' @export
 na_StructTS.zoo <- function(object, ..., na_rm = FALSE, maxgap = Inf) {
 	print("entering zoo method")
 	z <- na_StructTS(as.ts(object), ..., na_rm = FALSE, maxgap = maxgap)

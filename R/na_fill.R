@@ -40,6 +40,8 @@
 #' @export na_fill
 na_fill <- function(object, fill, ...) UseMethod("na_fill")
 
+
+#' @export 
 na_fill.zoo <- function(object, fill, ix, ...) {
 
 	if (length(dim(object)) == 2 && NCOL(object) > 1) {
@@ -108,10 +110,12 @@ na_fill.zoo <- function(object, fill, ix, ...) {
 
 }
 
+#' @export
 na_fill.default <- function(object, fill, ix, ...) {
 	coredata(na_fill(zoo(object), fill, ix, ...))
 }
-	
+
+#' @export
 na_fill.ts <- function(object, fill, ix, ...) {
 	as.ts(na_fill(as.zoo(object), fill, ix, ...))
 }

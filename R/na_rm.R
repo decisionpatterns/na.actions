@@ -25,6 +25,8 @@
 
 na_rm <- function(object) UseMethod('na_rm')
 
+#' @export
+
 na_rm.data.table <- function(object) { 
 
   wh_nm <- object %>% sapply(na_all) %>% which %>% names
@@ -36,6 +38,7 @@ na_rm.data.table <- function(object) {
   
 }
 
+#' @export
 na_rm.data.frame <- function(object) { 
 
   wh <- object %>% sapply(na_all) %>% which 

@@ -47,6 +47,9 @@ na_aggregate <- function(object, ...) UseMethod("na_aggregate")
 
 ## fills NA values with some aggregated function of the data.
 ## generalises imputing by the overall mean, by calendar month, etc.
+
+#' @export
+
 na_aggregate.default <- function(object, by = 1, ..., FUN = mean, na_rm = FALSE, maxgap = Inf)
 {
     if (is.function(by)) by <- by(time(object), ...)
