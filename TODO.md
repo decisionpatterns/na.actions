@@ -11,3 +11,8 @@
    handle NA, Inf, -Inf, 0 values  
    
  - Handle R/coredata?
+ 
+ 
+### Completed 
+
+ - [x] Make na_replace vectorized, e.g. na_replace( value=... )

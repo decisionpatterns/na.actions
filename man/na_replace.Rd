@@ -5,7 +5,7 @@
 \alias{na.replace}
 \title{Replace NA valies}
 \usage{
-na_replace(x, value = 0)
+na_replace(x, value)
 
 na.replace(x, value = 0)
 }
@@ -21,6 +21,16 @@ na.replace(x, value = 0)
 Replaces \code{NA}s by \code{value}
 }
 \details{
-Replaces \code{NA} values in the supplied vector with 
-a default, \code{value}.
+\code{na_replace} replaces \code{NA} values in the input vector with 
+a default, \code{value}. \code{value} can either be a length-1 scalar or a 
+vector of \code{length(x)}.  If a scalar, all NA values are replaced by the 
+scalar value.  If a vector, only \code{NA} values in \code{x} are replaced.
+}
+\examples{
+
+na_replace( c(1,NA,3), 2 )    # 1 2 3   
+na_replace( c(1,NA,3), 1:3 )  # 1 2 3
+
+
+
 }
