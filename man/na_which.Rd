@@ -2,14 +2,14 @@
 % Please edit documentation in R/na_which.R
 \name{na_which}
 \alias{na_which}
-\alias{na_which_default}
+\alias{na_which.default}
 \alias{na_which_data.frame}
 \alias{which_na}
 \title{na_which: Identify missing values}
 \usage{
 na_which(x)
 
-na_which_default(x)
+\method{na_which}{default}(x)
 
 na_which_data.frame(x)
 

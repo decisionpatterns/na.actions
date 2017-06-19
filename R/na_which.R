@@ -25,7 +25,7 @@ na_which <- function(x) UseMethod('na_which')
 
 #' @rdname na_which
 #' @export
-na_which_default <- function(x)
+na_which.default <- function(x)
   which( is.na(x) )
 
 
@@ -37,4 +37,7 @@ na_which_data.frame <- function(x)
 #' @rdname na_which
 #' @export
 
-which_na <- na_which 
+which_na <- function(x) {
+ message("which_na is deprecated. Use na_which instead.") 
+ na_which(x) 
+}
