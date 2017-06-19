@@ -12,7 +12,12 @@
    
  - Handle R/coredata?
  
+ - Make na_replace accept a function or expression as well. If an expression, 
+   should also provide an environment as well.  
+   
+     x %>% na_replace( function(x) ifexists(x,y,z) )
  
 ### Completed 
 
  - [x] Make na_replace vectorized, e.g. na_replace( value=... )
+ 

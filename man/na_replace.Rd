@@ -21,16 +21,24 @@ na.replace(x, value = 0)
 Replaces \code{NA}s by \code{value}
 }
 \details{
-\code{na_replace} replaces \code{NA} values in the input vector with 
+\code{na_replace} is an alias of: 
+
+     ifelse( is.na(x), value, x )
+
+It replaces \code{NA} values in the input vector with 
 a default, \code{value}. \code{value} can either be a length-1 scalar or a 
-vector of \code{length(x)}.  If a scalar, all NA values are replaced by the 
-scalar value.  If a vector, only \code{NA} values in \code{x} are replaced.
+vector of \code{length(x)}.  Recycling is not allowed.  If \code{value} is 
+a scalar, all NA values are replaced by \code{value}.  If a vector, only 
+\code{NA} of \code{x} are replaced by the corresponding items of \code{value}.
+
+It is mainly provided as a cleaner, pipe-able replacement for ifelse.
 }
 \examples{
 
-na_replace( c(1,NA,3), 2 )    # 1 2 3   
-na_replace( c(1,NA,3), 1:3 )  # 1 2 3
+na_replace( c(1,NA,3,NA), 2 )    # 1 2 3 2   
+na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
 
-
-
+}
+\seealso{
+\code{\link[base]{ifelse}}
 }
