@@ -39,5 +39,5 @@ na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
 
 }
 \seealso{
-\code{\link[base]{ifelse}}
+\code{\link[base]{ifelse}}, \code{\link[base]{replace}}
 }

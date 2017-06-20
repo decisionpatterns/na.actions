@@ -19,7 +19,7 @@
 #' \code{NA}s in \code{x} will be replaced by \code{values}.
 #' 
 #' @seealso 
-#'   \code{\link[base]{ifelse}}
+#'   \code{\link[base]{ifelse}}, \code{\link[base]{replace}}
 #'   
 #' @examples 
 #' 
@@ -36,7 +36,8 @@ na_replace <- function(x, values) {
   if( ! length(values) %in% c(1,length(x)) ) 
     stop( "length(values) is not 1 or length(x)")
   
-  # if( class(x) != class(values) )
+  # We don't need this warning 
+  # if( ! all(class(x) == class(values)) )
   #  warning( "x and values have different types")
   
   # ifelse( is.na(x), values, x )  
