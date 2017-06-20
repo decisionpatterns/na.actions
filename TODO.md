@@ -8,7 +8,7 @@
     - Remove rows/cols with all/any NAs
 
  - Rename package nada ("nothing"); or part of the **exceptional** packages to 
-   handle NA, Inf, -Inf, 0 values  
+   handle NA, Inf, -Inf, 0 values  Or, na.tools?
    
  - Handle R/coredata?
  
@@ -16,8 +16,14 @@
    should also provide an environment as well.  
    
      x %>% na_replace( function(x) ifexists(x,y,z) )
+     
+     
+ - What is faster ifelse or replace
+   ifelse( is.na(x), y, x)
+   replace( x, is.na(x), y[is.na(x)] )
+
  
 ### Completed 
 
  - [x] Make na_replace vectorized, e.g. na_replace( value=... )
- 
+ - [x] na_ifelse for na_replace
