@@ -34,6 +34,7 @@
 na_implicit <- function( x, values ) 
   UseMethod('na_implicit')
 
+#' @export
 na_implicit.default <- function(x, values=NULL) 
   if( is.recursive(x) ) .na_implicit.recursive(x, values ) else
   .na_implicit.atomic( x, values )
@@ -50,7 +51,7 @@ na_implicit.default <- function(x, values=NULL)
 }
 
 
-
+#' @export
 na_implicit.character <- function( x, values=c("NA", "(Missing)") ) {
   if( is.null(values) )
     values <- c("NA", "(Missing)") 
@@ -59,6 +60,7 @@ na_implicit.character <- function( x, values=c("NA", "(Missing)") ) {
   x
 }
 
+#' @export
 na_implicit.factor <- function( x, values=c("NA", "(Missing)") ) {
   if( is.null(values) )
     values <- c("NA", "(Missing)") 

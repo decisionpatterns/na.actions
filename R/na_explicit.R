@@ -32,7 +32,7 @@
 na_explicit <- function(x, values ) 
   UseMethod("na_explicit")
 
-
+#' @export
 na_explicit.default <- function(x, values) 
   if( is.recursive(x) ) .na_explicit.recursive(x, values ) else
   .na_explicit.atomic( x, values )
@@ -47,10 +47,14 @@ na_explicit.default <- function(x, values)
 .na_explicit.atomic <- function(x, values) 
   na_replace( x, values )
 
+
+#' @export
 na_explicit.character <- function(x, values = "NA") { 
   na_replace(x, values = values)  
 }
 
+
+#' @export
 na_explicit.factor <- function(x, values = "NA") { 
   na_replace(x, values = values)  
 }
