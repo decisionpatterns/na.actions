@@ -1,3 +1,6 @@
+## Version 0.7.0 (2017-08-22)
+
+ - Add na_explicit and na_implicit
 
 ## Version 0.6.2
 

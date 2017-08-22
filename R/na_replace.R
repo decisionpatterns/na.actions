@@ -35,12 +35,6 @@ na_replace <- function(x, values) {
 
   if( ! length(values) %in% c(1,length(x)) ) 
     stop( "length(values) is not 1 or length(x)")
-  
-  # We don't need this warning 
-  # if( ! all(class(x) == class(values)) )
-  #  warning( "x and values have different types")
-  
-  # ifelse( is.na(x), values, x )  
     
   if( length(values) == 1 )
     x[ is.na(x) ] <- values else

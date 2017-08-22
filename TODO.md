@@ -2,13 +2,12 @@
 
  - Devise syntax of related to list-like/recursive objects 
    - applying a function to an **entire**  vs.
-   -  applying to each **element** object
+   - applying to each **element** object
+   See na_explicit and na_implicit
 
- - na_row_rm, na_col_rm for table-like objects
-    - Remove rows/cols with all/any NAs
-
- - Rename package nada ("nothing"); or part of the **exceptional** packages to 
-   handle NA, Inf, -Inf, 0 values  Or, na.tools?
+ - Rename package nada ("nothing"); 
+   or, part of the **exceptional** packages to handle NA, Inf, -Inf, 0 values  
+   or, na.tools?
    
  - Handle R/coredata?
  
@@ -17,13 +16,14 @@
    
      x %>% na_replace( function(x) ifexists(x,y,z) )
      
-     
  - What is faster ifelse or replace
    ifelse( is.na(x), y, x)
    replace( x, is.na(x), y[is.na(x)] )
 
- 
 ### Completed 
 
+ - [x] na_drop_rows, na_drop_cols for table-like objects
+    - Remove rows/cols with all NAs
  - [x] Make na_replace vectorized, e.g. na_replace( value=... )
  - [x] na_ifelse for na_replace
+ 

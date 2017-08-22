@@ -1,7 +1,7 @@
 Package: na.actions
 Title: Utilities for working with NA Values
-Version: 0.6.2
-Date: 2017-06-20
+Version: 0.7.0
+Date: 2017-08-22
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
@@ -13,8 +13,7 @@ BugReports: https://github.com/decisionpatterns/na.actions/issues
 Depends:
     R (>= 3.1.0)
 Suggests:
-    testthat
-Imports:
+    testthat,
     zoo (>= 1.7.13)
 License: GPL-2 | File
 LazyData: true
