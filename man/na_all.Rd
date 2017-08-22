@@ -43,6 +43,12 @@ That is, reports if any columns are have all na's. This may change.
   na_all( c( NA, NA, 1 ) ) # FALSE
   na_all( c( NA, NA, NA ) )   # TRUE
   
+  df <- data.frame( char = rep(NA_character_, 3), nums=1:3)
+  na_all(df)  # FALSE
+  
+  df <- data.frame( char = rep(NA_character_, 3), nums=rep(NA_real_,3))
+  na_all(df)  # TRUE
+  
 }
 \seealso{
 \code{\link{na_any}} \cr

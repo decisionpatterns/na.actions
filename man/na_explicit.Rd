@@ -27,6 +27,7 @@ Make NA explicit values
    na_explicit( c(1, NA, 3, 4), 0)
    na_explicit( c("A",NA,"c","D" ) ) 
 
+   na_explicit( c("A",NA,"c","D") )
 }
 \seealso{
 - na.actions::na_replace 
