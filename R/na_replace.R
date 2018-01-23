@@ -44,7 +44,7 @@
 na_replace <- function(x, values)
   UseMethod("na_replace")
   
-
+#' @export
 na_replace.default <- function(x, values) {
 
   if( ! length(values) %in% c(1,length(x)) )  
@@ -57,6 +57,7 @@ na_replace.default <- function(x, values) {
   x  
 }
 
+#' @export 
 na_replace.factor <- function(x, values) { 
 
   new_levels <- setdiff( unique(values), levels(x) ) 
