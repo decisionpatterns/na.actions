@@ -15,9 +15,8 @@ na_explicit(x, values)
 Make NA explicit values
 }
 \details{
-`na_explicit` transforms `NA` to values. It is like 
-`na_replace` but provides an S3 interface that can provide specific 
- actions for various types/classes. It also works on recursive objects (i.e. 
+`na_explicit` transforms missing (`NA`) values to explicit values. It is like 
+`na_replace` but explicitly but sets the default of values to `NA` and sets  methods for recursive objects (i.e. 
  lists, data.frames, etc) by applying na_explicit to each element.
  
  It is also intended to be single argument function.
@@ -28,6 +27,8 @@ Make NA explicit values
    na_explicit( c("A",NA,"c","D" ) ) 
 
    na_explicit( c("A",NA,"c","D") )
+   
+   na_explicit( )
 }
 \seealso{
 - na.actions::na_replace 

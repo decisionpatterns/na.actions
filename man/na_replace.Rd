@@ -15,20 +15,24 @@ na.replace(x, values)
 \item{values}{to replace \code{NA}s}
 }
 \value{
-A vector with the class of \code{values} and the length of \code{x}. 
+A vector with the class of \code{values} and the length of \code{x}.
 \code{NA}s in \code{x} will be replaced by \code{values}.
 }
 \description{
 Replaces \code{NA}s by \code{value}
 }
 \details{
-\code{na_replace} replaces \code{NA} values in \code{x} with 
-\code{values}. \code{values} can either be a length-1 scalar or a 
-vector of \code{length(x)}. Recycling is not allowed.  If \code{values} is 
-a scalar, all NA values are replaced by \code{values}.  If a vector, only 
-\code{NA} of \code{x} are replaced by corresponding elements of \code{values}.
+\code{na_replace} replaces \code{NA} values in \code{x} with
+\code{values}. \code{values} can either be a length-1 scalar or a
+vector of \code{length(x)}. Recycling is not allowed. If \code{values} is a
+scalar, all NA values are replaced by it. If a vector, only \code{NA} of
+\code{x} are replaced by corresponding elements of \code{values}.
 
-As with It is mainly provided as a cleaner, pipe-able replacement for ifelse.
+If \code{x} is a factor, any levels not in \code{levels(x)} will be added to
+the list of factor levels. This is performed silently unless
+\code{getOption('verbose')==TRUE}.
+
+\code{na.replace} is a alias for na_replace that is likely to be deprecated.
 }
 \examples{
 
@@ -37,7 +41,11 @@ na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
 
 na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
 
+fct <- as.factor( c( NA, letters[1:3], NA) )
+na_replace(fct, "NA")
+
 }
 \seealso{
-\code{\link[base]{ifelse}}, \code{\link[base]{replace}}
+\code{\link{na_explicit}}
+\code{\link[base]{ifelse}}, \code{\link[base]{replace}},
 }

@@ -12,7 +12,7 @@ na_implicit(x, values)
 \item{values}{values to be recognized as NA}
 }
 \description{
-Change values (explicit `NAs`) back to `NA`
+Change certain values to NAs, ie make explicit `NAs` back to `NA`
 }
 \details{
 `na_implicit` replaces `values` by `NA`. It is meant to be nearly inverse 

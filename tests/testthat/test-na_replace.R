@@ -20,3 +20,16 @@ v %>% na_replace(1:4) %>% expect_equal(1:4)
 v %>% na_replace(letters[1:4]) %>% expect_equal( c("1","b","3","d") ) 
 
 })
+
+
+context( "na_replace factor")
+test_that( "na_replace factor", { 
+  
+  fct <- as.factor( c( NA, letters[1:3], NA) )
+  res <- na_replace(fct, "z")  
+  
+  res %>% length %>% expect_equal(5)
+  res %>% levels %>% expect_equal( c('a','b','c','z'))
+  res %>% expect_equivalent( as.factor(c('z','a','b','c','z')) )
+  
+})

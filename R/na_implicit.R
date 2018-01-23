@@ -1,6 +1,6 @@
 #' na_implicit
 #' 
-#' Change values (explicit `NAs`) back to `NA`
+#' Change certain values to NAs, ie make explicit `NAs` back to `NA`
 #' 
 #' @param x object
 #' @param values values to be recognized as NA

@@ -1,7 +1,7 @@
 Package: na.actions
 Title: Utilities for working with NA Values
-Version: 0.7.2
-Date: 2017-08-22
+Version: 0.7.3
+Date: 2018-01-22
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
