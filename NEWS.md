@@ -1,3 +1,9 @@
+## Version 
+
+ - Add `NA_explicit_` as an exported constant for explicit categorical values.
+ - Convert man to use markdown.
+ 
+
 ## Version 0.7.3 (2018-01-22) 
  
  - Fix `na_replace` (and `na_explicit`) to add levels for values if

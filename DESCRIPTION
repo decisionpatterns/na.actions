@@ -1,5 +1,5 @@
 Package: na.actions
-Title: Utilities for working with NA Values
+Title: Comprehensive Library For Handling Missing Values
 Version: 0.7.4
 Date: 2018-01-22
 Authors@R: c(
@@ -14,8 +14,10 @@ Depends:
     R (>= 3.1.0)
 Suggests:
     testthat,
-    zoo (>= 1.7.13)
+    zoo (>= 1.7.13),
+    data.table (>= 1.10)
 License: GPL-2 | File
 LazyData: true
 RoxygenNote: 6.0.1.9000
 Repository: CRAN 
+Encoding: UTF-8

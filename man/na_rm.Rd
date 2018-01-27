@@ -2,7 +2,6 @@
 % Please edit documentation in R/na_rm.R
 \name{na_rm}
 \alias{na_rm}
-\alias{na_rm}
 \title{na_rm}
 \usage{
 na_rm(object)
@@ -13,22 +12,22 @@ na_rm(object)
 \item{object}{to remove \code{NA}s from}
 }
 \value{
-An object of the same class with all \code{NA} values removed. For 
-  data.frame and data.table objects entire columns are removed if they 
-  contain solely \code{NA} values.
+An object of the same class with all \code{NA} values removed. For
+data.frame and data.table objects entire columns are removed if they
+contain solely \code{NA} values.
 }
 \description{
-Removes \code{NA} from objects
+Removes \code{NA} values from objects
 }
 \details{
-For \strong{vectors} this is the same as \code{\link[stats]{na_omit}} and 
-\code{\link[stats]{na_exclude}}.
+For \strong{vectors} this is the same as \code{\link[stats:na_omit]{stats::na_omit()}} and
+\code{\link[stats:na_exclude]{stats::na_exclude()}}.
 
-For \strong{data.frames} and \strong{data.tables} columns that are entirely
-\code{NA} are removed.
+For removing columns or rows that are have only missing values use
+\code{\link[=na_drop_col]{na_drop_col()}} or \code{\link[=na_drop_row]{na_drop_row()}}
 }
 \seealso{
-\code{\link[stats]{na_omit}} \cr
-  \code{\link[stats]{na_exclude}} \cr
-  \code{\link{na_all}}
+\code{\link[stats:na_omit]{stats::na_omit()}}
+\code{\link[stats:na_exclude]{stats::na_exclude()}} \cr
+\code{\link[=na_all]{na_all()}}
 }

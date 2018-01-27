@@ -20,7 +20,7 @@ na_mean <- function( x, ... ) {
   
   if( ! is.numeric(x) ) stop( "na_mean only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- mean( x, na_rm = TRUE, ... )
+  x[ is.na(x) ] <- mean( x, na.rm = TRUE, ... )
   return(x)
   
 }

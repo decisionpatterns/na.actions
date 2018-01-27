@@ -19,7 +19,7 @@ na_min <- function( x ) {
   
   if( ! is.numeric(x) ) stop( "na_min only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- min( x, na_rm = TRUE )
+  x[ is.na(x) ] <- min( x, na.rm = TRUE )
   return(x)
   
 }

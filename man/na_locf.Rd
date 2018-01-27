@@ -5,7 +5,6 @@
 \alias{na_locf.data.frame}
 \alias{na_locf.list}
 \alias{na_locf.default}
-\alias{na_locf.default}
 \alias{na_contiguous.data.frame}
 \alias{na_contiguous.list}
 \title{Last Observation Carried Forward}

@@ -3,7 +3,7 @@
 \name{na_aggregate}
 \alias{na_aggregate}
 \alias{na_aggregate.default}
-\title{Replace NA by aggregation}
+\title{Replace NAs by aggregation}
 \usage{
 na_aggregate(object, ...)
 }
@@ -40,20 +40,22 @@ allows imputing by the overall mean, by monthly means, etc.
 }
 \examples{
 
-z <- zoo(c(1, NA, 3:9),
+  z <- zoo(c(1, NA, 3:9),
          c(as.Date("2010-01-01") + 0:2,
            as.Date("2010-02-01") + 0:2,
-           as.Date("2011-01-01") + 0:2))
-## overall mean
-na_aggregate(z)
-## group by months
-na_aggregate(z, as.yearmon)
-## group by calendar months
-na_aggregate(z, months)
-## group by years
-na_aggregate(z, format, "\%Y")
+           as.Date("2011-01-01") + 0:2)
+         )
+         
+  ## overall mean
+  na_aggregate(z)
+  ## group by months
+  na_aggregate(z, as.yearmon)
+  ## group by calendar months
+  na_aggregate(z, months)
+  ## group by years
+  na_aggregate(z, format, "\%Y")
 
 }
 \seealso{
-\code{\link{zoo}}
+\code{\link[=na_mean]{na_mean()}}, \code{\link[=na_max]{na_max()}}, \code{\link[=na_median]{na_median()}}, etc. for similar
 }

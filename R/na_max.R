@@ -19,7 +19,7 @@ na_max <- function( x ) {
   
   if( ! is.numeric(x) ) stop( "na_max only works on numeric vectors" ) 
   
-  x[ is.na(x) ] <- max( x, na_rm = TRUE )
+  x[ is.na(x) ] <- max( x, na.rm = TRUE )
   return(x)
   
 }

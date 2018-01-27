@@ -4,35 +4,45 @@
 \alias{na_explicit}
 \title{na_explicit}
 \usage{
-na_explicit(x, values)
+na_explicit(x, .na, ...)
 }
 \arguments{
 \item{x}{object; either atomic or recursive.}
 
-\item{values}{either a single element list or named vectors; See #Details.}
+\item{.na}{either a single element list or named vectors; See #Details.}
+
+\item{...}{(used for recursive structures only) a list of name=value or
+function}
+
+\item{.values}{interface for setting multiple exception value functions.}
 }
 \description{
-Make NA explicit values
+Set missing values to an explicit value,
 }
 \details{
-`na_explicit` transforms missing (`NA`) values to explicit values. It is like 
-`na_replace` but explicitly but sets the default of values to `NA` and sets  methods for recursive objects (i.e. 
- lists, data.frames, etc) by applying na_explicit to each element.
- 
- It is also intended to be single argument function.
+object
+
+\code{na_explicit} transforms its input by replacing missing (\code{NA}) values to
+the explicit value set by the \code{.na} argument. The default is to use
+\link{NA_explicit}
+\code{\link[=na_replace]{na_replace()}} but explicitly but works on recursive
+
+It is also intended to be single argument function.
 }
 \examples{
 
-   na_explicit( c(1, NA, 3, 4), 0)
+   na_explicit( c(1, NA, 3, 4), 0 )
    na_explicit( c("A",NA,"c","D" ) ) 
 
    na_explicit( c("A",NA,"c","D") )
    
    na_explicit( )
+   
 }
 \seealso{
-- na.actions::na_replace 
- - na.actions::na_implicit
- - na.actions::na_replace
- - forcats::fct_explicit_na
+\itemize{
+\item \code{\link[=na_replace]{na_replace()}}
+\item \code{\link[=na_implicit]{na_implicit()}}
+\item forcats::fct_explicit_na()
+}
 }

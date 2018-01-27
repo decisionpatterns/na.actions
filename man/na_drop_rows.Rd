@@ -3,21 +3,34 @@
 \name{na_drop_rows}
 \alias{na_drop_rows}
 \alias{drop_na_rows}
-\title{Drop rows of a table whose values are all NA}
+\title{na_drop_rows}
 \usage{
-na_drop_rows(data)
+na_drop_rows(tbl)
 
-drop_na_rows(data)
+drop_na_rows(tbl)
 }
 \arguments{
-\item{data}{data-like object
-
-Remove all rows whose only values are NA.}
+\item{tbl}{data-like object}
 }
 \value{
-An object of the same class as \code{data} with rows containing all 
-  \code{NA} values removed
+An object of the same class as \code{tbl} with rows containing all
+\code{NA} values removed
 }
 \description{
 Drop rows of a table whose values are all NA
+}
+\details{
+\code{na_drop_rows} removes all rows whose only values are NA. It works for all
+table-like objects.
+}
+\examples{
+
+  data(iris)
+  
+  tbl <- iris[1:5,]
+  tbl[1:3,] <- NA
+  tbl
+  
+  na_drop_rows(tbl) 
+
 }

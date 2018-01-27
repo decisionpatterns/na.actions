@@ -3,21 +3,23 @@
 \name{na_drop_cols}
 \alias{na_drop_cols}
 \alias{drop_na_cols}
-\title{Drop cols of a table whose values are all NA}
+\title{na_drop_cols}
 \usage{
 na_drop_cols(data)
 
 drop_na_cols(data)
 }
 \arguments{
-\item{data}{data-like object
-
-Remove all cols whose only values are NA.}
+\item{data}{data-like object}
 }
 \value{
-An object of the same class as \code{data} with cols containing all 
-  \code{NA} values removed
+An object of the same class as \code{data} with cols containing all
+\code{NA} values removed
 }
 \description{
 Drop cols of a table whose values are all NA
+}
+\details{
+\code{na_drop_cols} removes all cols whose only values are NA. It works on all
+table-like objects.
 }

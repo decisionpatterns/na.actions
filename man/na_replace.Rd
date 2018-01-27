@@ -3,49 +3,76 @@
 \name{na_replace}
 \alias{na_replace}
 \alias{na.replace}
-\title{Replace NA valies}
+\title{Replace NAs with explicit values}
 \usage{
-na_replace(x, values)
+na_replace(x, .na, ...)
 
-na.replace(x, values)
+na.replace(x, .na)
 }
 \arguments{
-\item{x}{vector of values to have the NA replaced with \code{value}}
+\item{x}{vector in which \code{NA} values are to be replaced.}
 
-\item{values}{to replace \code{NA}s}
+\item{.na}{value or object used to replace \code{NA}. See Details.}
 }
 \value{
-A vector with the class of \code{values} and the length of \code{x}.
-\code{NA}s in \code{x} will be replaced by \code{values}.
+A vector with the class and length of \code{x}.
+\code{NA}s in \code{x} will be replaced by \code{.na}. \code{.na} is coerced as necessary.
 }
 \description{
-Replaces \code{NA}s by \code{value}
+Replaces \code{NA} values with explicit values.
 }
 \details{
-\code{na_replace} replaces \code{NA} values in \code{x} with
-\code{values}. \code{values} can either be a length-1 scalar or a
-vector of \code{length(x)}. Recycling is not allowed. If \code{values} is a
-scalar, all NA values are replaced by it. If a vector, only \code{NA} of
-\code{x} are replaced by corresponding elements of \code{values}.
+\code{na_replace} replaces missing values in \code{x} by \code{.na}. Replacement is both
+class/type and length safe meaning the result is guaranteed to be the
+same class/type and length of \code{x} regardless of the value of \code{.na}.
 
-If \code{x} is a factor, any levels not in \code{levels(x)} will be added to
-the list of factor levels. This is performed silently unless
-\code{getOption('verbose')==TRUE}.
+\strong{Param: \code{x}}
+
+If \code{x} is \strong{categorical} (e.g. character or factor), \code{.na} is optional.
+The default is "(NA)" and can be set with
+\code{options( NA_explicit_ = new_value )}. It can also be
+referenced directly with \link{NA_explicit_}.
+
+If \code{x} is a \strong{factor}, unique values of \code{.na} not in already present in
+\code{levels(x)} will be added. They are appended silently unless
+\code{getOption('verbose')==TRUE} in which a message reports the added levels.
+
+\strong{Param: \code{.na}}
+
+\code{.na} can be either a scalar, vector or function.
+
+If a vector, \code{.na} can be a length-1 scalar or length(x)-vector. If a
+length-1 scalar all missing values are replaced by it.  If a
+length(x)\code{-vector, missing values are replaced by the corresponding elements of}.na\code{. Recycling values of}.na` is not allowed.
 
 \code{na.replace} is a alias for na_replace that is likely to be deprecated.
 }
 \examples{
 
-na_replace( c(1,NA,3,NA), 2 )    # 1 2 3 2   
-na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
+  # Integers and numerics
+  na_replace( c(1,NA,3,NA), 2 )    # 1 2 3 2   
+  na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
 
-na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
+  na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
 
-fct <- as.factor( c( NA, letters[1:3], NA) )
-na_replace(fct, "NA")
+  # Characters 
+  lets <- letters[1:5]
+  lets[ c(2,4) ] <- NA
+  lets \%>\% na_replace
 
+  # Factors 
+  fct <- as.factor( c( NA, letters[2:4], NA) )
+  fct
+  na_replace(fct, "z")  # z b c d z  -- level z added
+  na_replace(fct, letters[1:5] )
+  na_replace(fct)
+     
 }
 \seealso{
-\code{\link{na_explicit}}
-\code{\link[base]{ifelse}}, \code{\link[base]{replace}},
+\itemize{
+\item \code{\link[=na_explicit]{na_explicit()}} for a similar function that additionally handles recursive
+\item and table-like objects
+\item \code{\link[base:ifelse]{base::ifelse()}}, \code{\link[base:replace]{base::replace()}}
+\item \code{forcats::fct_explicit_na} - which only handles factors
+}
 }

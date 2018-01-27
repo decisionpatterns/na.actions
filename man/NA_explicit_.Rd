@@ -4,15 +4,22 @@
 \name{NA_explicit_}
 \alias{NA_explicit_}
 \title{NA_explicit_}
-\format{An object of class \code{NULL} of length 0.}
+\format{An object of class \code{character} of length 1.}
 \usage{
 NA_explicit_
 }
 \description{
-Constant for categorical/character/factor variables
+Default replacement for missing values in categorical vectors.
 }
 \details{
-\code{NA_explicit_} is an active binding to \code{getOptions('NA_explicit_})\code{and allows for a consistent, explicit}NA` values.
+\code{NA_explicit_} is used as a default replacement for categorical vectors.
+It is an active binding to \code{getOptions('NA_explicit_')} and is exported
+to the callers namespace.
+
+To change the value of \code{NA_explicit} use:\preformatted{options( NA_explicit = new_value )
+}
+
+You cannot directly set `NA_explicit_``
 }
 \seealso{
 \itemize{
