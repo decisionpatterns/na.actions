@@ -8,7 +8,7 @@
 # @details 
 # 
 # No magic here, just something simple to convert `x` into a list of 
-# lists. Each element of \code{x} is broken into a list with elements `k` 
+# lists. Each element of `x` is broken into a list with elements `k` 
 # (key) and `v` (value). See examples.
 #
 # For many cases, key-value iteration can be done with `*apply` or
@@ -68,8 +68,8 @@ coerce_to <- function(object, class) {
   if( is(object, class) ) return(object) 
   
   suppressWarnings( res <- as(object, class) )
-  if( any_na(res) ) stop( paste0("NAs produced in coercing .na to ",  class ) )
-  if( any(res != object) ) stop( paste0( "Cannot coerce .na to ", class ) )  
+  if( any.na(res) ) stop( paste0("NAs produced in coercing replacement values` to ",  class ) )
+  if( any(res != object) ) stop( paste0( "Coercion of replacement values altered their values from ", class ) )  
   
   res
     
@@ -85,3 +85,11 @@ qw <- function (...)
 # Taken from the dimensional package with permission  
 most_freq <- function (x, na.action = na.pass) 
   as(names(which.max(table(na.action(x), useNA = "always"))), class(x))
+
+
+# Returns TRUE if 
+is_named <-function(x) ! is.null( attr(x, "names") ) 
+is_unnamed <- function(x) is.null( attr(x, "names") )
+is_named.quosure <- function(x) length( setdiff( names(x), "" ) ) == length(x)
+is_unnamed.quosure <- function(x) ! is_named.quosure(x)
+  

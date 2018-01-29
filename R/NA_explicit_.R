@@ -7,6 +7,7 @@ options( NA_explicit_ = "(NA)" )
 #' @details 
 #' 
 #' `NA_explicit_` is used as a default replacement for categorical vectors. 
+#' 
 #' It is an active binding to `getOptions('NA_explicit_')` and is exported
 #' to the callers namespace. 
 #' 
@@ -14,12 +15,11 @@ options( NA_explicit_ = "(NA)" )
 #' ```
 #' options( NA_explicit = new_value )
 #' ``` 
-#' You cannot directly set `NA_explicit_``
+#' `NA_explicit_` cannot be directly set.
 #' 
 #' @seealso 
 #' 
-#'  - [na_explicit()]
-#'  - [na_replace()]
+#'  - [na.replace()] and [na_replace()] 
 #' 
 #' @md
 #' @export

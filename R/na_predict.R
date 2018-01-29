@@ -1,6 +1,6 @@
 #' na_predict
 #' 
-#' replace \code{NA} values by predictions of a model
+#' replace `NA` values by predictions of a model
 #' 
 #' @param x data
 #' @param object object with predict method

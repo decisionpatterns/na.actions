@@ -1,169 +1,171 @@
-#' Replace NAs with explicit values  
+#' Replace missing values in tbales and lists
+#' 
+#' Replace missing values (`NA`) in a table and lists
+#' 
+#' @param .data list-like or table-like structure.
+#' @param .na scalar, vector or function as described in [na.replace()]
+#' @param ... additional args; either a unnamed list of columns (quoted or not)
+#'        or name=function pairs.  See Details.
 #'
-#' Replaces `NA` values with explicit values.
+#' @details
+#' 
+#' `na_replace` is similar to other *dplyr* verbs especially [dplyr::mutate()] 
+#' except it always operates on a subset of vector elements, i.e. those with `NA` 
+#' values. 
+#' 
+#' The behavior depends on the values of `.na` and `...`. (See Usage.) 
+#' 
+#' @usage 
 #'
-#' @param x vector in which `NA` values are to be replaced. 
-#' @param .na scalar, length(x)-vector or function used to replace `NA`. 
-#'   See #Details. 
-#' 
-#' @details 
-#' 
-#' `na_replace` replaces missing values in `x` by `.na`. 
-#' 
-#' Replacement is both class/type and length safe meaning the result 
-#' is guaranteed to be the same class/type and length of `x` regardless of the 
-#' value of `.na`. 
-#' 
-#' **Param: `x`** 
-#' 
-#' If `x` is **categorical** (e.g. character or factor), `.na` is optional. 
-#' The default is "(NA)" and can be set with 
-#' `options( NA_explicit_ = new_value )`. It can also be 
-#' referenced directly with [NA_explicit_].
+#' `na_replace` can be used for three replacement operatations: 
 #'  
-#' If `x` is a **factor**, unique values of `.na` not in already present in 
-#' `levels(x)` will be added. They are appended silently unless 
-#' `getOption('verbose')==TRUE` in which a message reports the added levels.
-#' 
-#' 
-#' **Param: `.na`**
-#' 
-#' `.na` can be either a scalar, vector or function.
-#' 
-#' If a **scalar**, each missing value of `x` is replaced by `na`.
-#' 
-#' If a **vector**, `.na` must have length(x)`. Missing values of `x` are replaced 
-#' by corresponding elements of `.na`.  Recycling values of `.na` is not 
-#' performed. An error will be thrown in the event that `length(.na)` is not `1`
-#' or `length(x)`.`  
-#'    
-#' If a **function**, `x` is transformed by .na` with:
-#' ````
-#'      .na( na.omit(x) )
-#' ````    
-#' then preceding with normal operations.          
-#'    
-#'    
-#' `na.replace` is a alias for na_replace that is likely to be deprecated.  
+#'  1. `na_replace( .data, .na )` : ( missing `...` ) Replace missing values 
+#'      in **ALL COLS** by `.na`
+#'  2. `na_replace( .data, .na, ... )` : ( `...` is an unnamed list) Replace 
+#'      column(s) specified in `...` by `.na`.  Columns are specified as an 
+#'      unnamed list of quoted or unquoted column names.
+#'  3. `na_replace( .data. col1=na.*, col2=na.* )` : ( missing `.na` ) : 
+#'     Replace by column-specific `.na` 
+#'  
+#' Use Additional arguments are to `.na` are not used; Use na_replace_at for 
+#' or create your own lambda functions.
 #' 
 #' @return 
-#' A vector with the class and length of `x`.  
-#' `NA`s in `x` will be replaced by `.na`. `.na` is coerced as necessary.
 #' 
-#' @seealso 
+#' Returns a object as the same type as `.data`. Columns are mutated to replace
+#' missing values (`NA`) with value specied by `.na` and `...`
 #' 
-#'  - [na_explicit()] for a similar function that additionally handles recursive
-#'  - and table-like objects 
-#'  - [base::ifelse()], [base::replace()] 
-#'  - `forcats::fct_explicit_na` - which only handles factors
-#'   
-#' @examples 
+#' @examples
 #' 
-#'   # Integers and numerics
-#'   na_replace( c(1,NA,3,NA), 2 )    # 1 2 3 2   
-#'   na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
+#' mtcars %>% na_replace(0, mpg, cyl)
+#' mtcars %>% na_replace(1:6, mpg, cyl)
+#'
+#' mtcars %>% na_replace( na.mean )
+#' mtcars %>% na_replace( mean )       # unsafe
+#' mtcars %>% na_replace( length, mpg, disp )
+#' mtcars %>% na_replace( mean, mpg, disp )
+#' mtcars %>% na_replace( mpg=na.mean, cyl=na.max )
 #' 
-#'   na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
-#' 
-#'   # Characters 
-#'   lets <- letters[1:5]
-#'   lets[ c(2,4) ] <- NA
-#'   lets %>% na_replace
-#' 
-#'   # Factors 
-#'   fct <- as.factor( c( NA, letters[2:4], NA) )
-#'   fct
-#'   na_replace(fct, "z")  # z b c d z  -- level z added
-#'   na_replace(fct, letters[1:5] )
-#'   na_replace(fct)
-#'      
-#'      
 #' @md
-#' @rdname na_replace
 #' @export
 
 
-na_replace <- function(x, .na=NULL, ...) { 
+na_replace <- function (.data, .na, ...)
+{
   
- if( is.recursive(x) ) .na_replace.data.frame(x, ...)
-  #  stop( call.=FALSE, "na_replace does not support recursive objects. See na_explicit.")
+  # if( missing(.na) && missing(...) )
+  #  stop( "At least one of .na or ... must be provided.")
   
-  # CHECK .na length == 1 or length(x)
-  if( ! missing(.na) )
-    if( ! length(.na) %in% c(1,length(x)) )  
-      stop( "length(.na) is not 1 or length(x); recycling of .na is not allowed.")
-  
-  UseMethod("na_replace")
-}
-
-
-#' @export 
-.na_replace.data.frame <- function(x, ...) { 
-  message("inside")
-  list(...)
-}
-
-#' @export
-na_replace.default <- function(x, .na) {
-  
-  # When .na is a function, apply is
-  if( is.function(.na) ) .na <- .na( na.omit(x) )
-  
-  # Ensure type safety
-  .na <- coerce_to( .na, class(x) )
-
-  # support for vector replacement  
-  if( length(.na) == 1 )
-    x[ is.na(x) ] <- .na else
-    x[ is.na(x) ] <- .na[ is.na(x) ]
-
-  x  
-  
-}
-
-
-
-#' @export
-# Replacement with factors requires managing new-levels  
-na_replace.factor <- function( x, .na=getOption('NA_explicit_') ) { 
-
-  # When .na is a function, apply is
-  if( is.function(.na) ) .na <- .na( na.omit(x) )
-    
-  new_levels <- setdiff( unique(.na), levels(x) ) 
-  
-  if( length(new_levels) > 0 ) { 
-    if( getOption('verbose') ) 
-      warning( "Adding levels to factor: ", paste( new_levels, sep=", "))
-    levels(x) <- c( levels(x), new_levels )
+  # USAGE 1: missing(...) all columns mutated by .na
+  if ( missing(...) ) { 
+    for( j in 1:length(.data) )
+      .data[[j]] <- na.replace( .data[[j]], .na )
+    return( .data )
   }
     
-  # While this is virtually identical to 
-  if( length(.na) == 1 )
-    x[ is.na(x) ] <- .na else
-    x[ is.na(x) ] <- .na[ is.na(x) ]
+  
+  # vars: key-value list ...
+  
+  # TEST whether unknown columns were specified   
+  unknown <- setdiff( names(vars), names(.data))
+  if( length(unknown) > 0 )
+    stop( paste( "Unknown columns:", paste(unknown, collapse=", ")))
+  
+  
+  # USAGE 2: ... is column names
+  # IF names were provided as part of columns list, we take
+  if( ! missing(.na) && is_unnamed.quosure( quos(...) ) ) { 
+    vars <- select_vars( names(.data), ... )  
+    for( j in vars )
+      .data[[j]] <- na.replace( .data[[j]], .na ) 
+    return(.data)
+  }   
+  
+  # USAGE 3: ... is col=na.fun pairs
+  if( missing(.na) && is_named( quos(...)) ) {
+    for ( . in kv( quos(...) ) )  {   
+      .na = rlang::eval_tidy( .$v )
+      .data[[.$k ]] <- na.replace( .data[[.$k]], .na=.na )
+    }
+    return(.data)
+  } 
+  
+  if( ! missing(.na) && is_named( quos )) 
+    stop( "Specifying .na and col=.na is not allowed")
+  
+}
 
-  x  
+
+# f <- function(.data, ...)
+#   quos(..., .named=FALSE )
+# 
+# f( mtcars, mpg, cyl)
+
+
+#' @note 
+#' `...` behaves differently in `na_replace` as it denotes a list or column 
+#' names instead of name-value pairs. The values are provided by `.na`
+#'  
+
+na_replace_at <- function(.tbl, .na, .vars, ... ) { 
+
+  for( i in .vars )
+    .tbl[[i]] <- na.replace( .tbl[[i]], .na, ... )
+  .tbl
+  
+}  
+
+
+na_replace_all <- function(.tbl, .na, ... ) { 
+
+  for( i in 1:length(.tbl) )
+    .tbl[[i]] <- na.replace( .tbl[[i]], .na, ... )
+  .tbl
     
 }
 
 
+na_replace_if <- function( .tbl, .na, .predicate, ... ) { 
 
-
-#' @export 
-na_replace.character <- function( x, .na=getOption('NA_explicit_') ) 
-  na_replace.default(x, .na )
-
-
-  
-#' @rdname na_replace
-#' @export
-
-na.replace <- function(x, .na ) {
-  warning( "na.replace has been renamed to na_replace. Please change your code.")
-  na_replace(x, .na)
+  for( i in 1:length(.tbl) ) 
+    if( .predicate(.tbl[[i]] ) ) 
+      .tbl[[i]] <- na.replace( .tbl[[i]],  )
+    
+  .tbl
 }
+  
 
-
-
- 
+# na_replace <- function(.data, .na,  ...) { 
+# 
+#    
+#  # USAGE 1:  na_replace( .data, .na ) -> impute all variables
+#  if( ! missing(.na) && missing(...) ) { 
+#    for( j in 1:length(.na) )
+#      # .data <- set( .data, j=.na( .data[[j]] )  
+#      .data[[j]] <- .na( .data[[j]] )
+#      return(.data)
+#  }
+#    
+# 
+#  # USAGE 2:  na_replace( .data, .na, ... )   
+#  if( ! missing(.na) && ! missing(...) ) {
+#    vars <- select_vars( names(.data), ... )
+#    for( v in vars )
+#      .data[[v]] <- na.replace( .data[[v]], .na )
+#    return(.data)
+#  }
+#    
+#   
+#  # USAGE 3: na_replace( .data. col1=na.*, col2=na.* )
+#  if( missing(.na) && length( list(...) ) > 0 ) 
+#    vars <- names(.data) else 
+#    vars <- select_vars( names(.data), ... )
+#    
+#    
+#  for( v in vars )
+#    .data[[v]] <- na.replace( .data[[v]], .na )
+#  .data
+#  
+#  
+#  
+# }

@@ -9,21 +9,46 @@ na_explicit(x, .na, ...)
 \arguments{
 \item{x}{object; either atomic or recursive.}
 
-\item{.na}{either a single element list or named vectors; See #Details.}
+\item{.na}{either a single element vector list or named vectors; See #Details.}
 
-\item{...}{(used for recursive structures only) a list of name=value or
-function}
-
-\item{.values}{interface for setting multiple exception value functions.}
+\item{...}{(used for recursive structures only) a list of name=value pairs}
 }
 \description{
 Set missing values to an explicit value,
 }
 \details{
-object
+\code{na_explicit} replaces missing (\code{NA}) values in \code{x} with
+an explicit value set by the \code{.na} argument. It is largely an extension of
+\code{\link[=na_replace]{na_replace()}} and supports table-like objects in a \emph{tidyverse} compliant way.
 
-\code{na_explicit} transforms its input by replacing missing (\code{NA}) values to
-the explicit value set by the \code{.na} argument. The default is to use
+atomic x | .na==NULL  | ... missing     : error
+atomic x | .na==NULL  | ... there       : error
+atomic x | .na!=NULL  | ... missing     : all columns na_replace by .na
+atomic x | ,na!==NULL | ... there       : all columns na_replace by .na, ... is extra args to f
+
+rec x | .na==NULL  | ... missing     : error
+rec x | .na==NULL  | ... there       : columns transformed by ...
+rec x | .na!=NULL  | ... missing     : all columns na_replace by .na (Should this be supported( ?) na_replace_all
+rec x | ,na!==NULL | ... there       : all columns na_replace by .na, ... is extra args to f       na_replace_
+
+na_replace( .tbl, ... )
+
+x .na!=NULL  | ... missing : all columns set to `.na``
+.na==NULL  | col=x | col=na
+
+na_explicit( .tbl, col1=mean( . , na.rm=TRUE )... )
+na_explicit
+
+\strong{input: \code{x}}
+
+\code{x} can be either an \emph{atomic} or \emph{recursive} object. If \emph{atomic} then
+\code{na_explicit} behaves as \code{\link[=na_replace]{na_replace()}} an replaces missing values with \code{.na}
+and \code{...} is used to specify additional arguments if \code{.na} is a function.
+
+If \code{x} is \emph{recursive} then missing values are replaced by \code{.na}/\code{...} in a
+dplyr manner.
+
+The default is to use
 \link{NA_explicit}
 \code{\link[=na_replace]{na_replace()}} but explicitly but works on recursive
 
@@ -31,12 +56,12 @@ It is also intended to be single argument function.
 }
 \examples{
 
-   na_explicit( c(1, NA, 3, 4), 0 )
-   na_explicit( c("A",NA,"c","D" ) ) 
+  na_explicit( c(1, NA, 3, 4), 0 )
+  na_explicit( c("A",NA,"c","D" ) ) 
 
-   na_explicit( c("A",NA,"c","D") )
+  na_explicit( c("A",NA,"c","D") )
    
-   na_explicit( )
+  na_explicit( )
    
 }
 \seealso{

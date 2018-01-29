@@ -2,12 +2,27 @@
 
  na.tools has two sets of functions dots and underscores. The dot functions have
  names with `.`  (na.replace, na.rm, na.*). Like their inspiration from the 
- stats package, they operate on atomic vectors. The underscore functions have
- names with `_` (na_replace, na_rm, na_*). They operatie on recursive structures
- such as lists and table-like structures. They follow dplyr/tidyverse names and 
- behaviors.  
+ stats package, they operate on atomic vectors. 
  
+ The underscore functions have
+ names with `_` (na_replace, na_rm, na_*). They are meant to operate on 
+ recursive structures such as lists and table-like structures and closely follow 
+ dplyr/tidyverse standards and behaviors. ( They will also work on atomic 
+ objects.)  
  
+ - Should we permit some unsafe operations in na.replace?
+   - Change length? No
+   - Change value? No? With warning
+   - Change type? Okay, if the coercion preserves the value
+   
+ - Differentiate class and type safety.
+ 
+ - implement `ties` method  
+ - na.random
+   - weighted. 
+ - na.shuffle.
+ 
+ - favor `na.replace` & `na.restore` over `na.explicit` and `na.implicit`
  
  - tbl version of na_replace / na_explicit (?)
    - should atomic be supported : LEAN: YES

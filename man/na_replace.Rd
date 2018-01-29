@@ -2,77 +2,52 @@
 % Please edit documentation in R/na_replace.R
 \name{na_replace}
 \alias{na_replace}
-\alias{na.replace}
-\title{Replace NAs with explicit values}
+\title{Replace missing values in tbales and lists}
 \usage{
-na_replace(x, .na, ...)
-
-na.replace(x, .na)
+`na_replace` can be used for three replacement operatations: 
+ 
+ 1. `na_replace( .data, .na )` : ( missing `...` ) Replace missing values 
+     in **ALL COLS** by `.na`
+ 2. `na_replace( .data, .na, ... )` : ( `...` is an unnamed list) Replace 
+     column(s) specified in `...` by `.na`.  Columns are specified as an 
+     unnamed list of quoted or unquoted column names.
+ 3. `na_replace( .data. col1=na.*, col2=na.* )` : ( missing `.na` ) : 
+    Replace by column-specific `.na` 
+ 
+Use Additional arguments are to `.na` are not used; Use na_replace_at for 
+or create your own lambda functions.
 }
 \arguments{
-\item{x}{vector in which \code{NA} values are to be replaced.}
+\item{.data}{list-like or table-like structure.}
 
-\item{.na}{value or object used to replace \code{NA}. See Details.}
+\item{.na}{scalar, vector or function as described in \code{\link[=na.replace]{na.replace()}}}
+
+\item{...}{additional args; either a unnamed list of columns (quoted or not)
+or name=function pairs.  See Details.}
 }
 \value{
-A vector with the class and length of \code{x}.
-\code{NA}s in \code{x} will be replaced by \code{.na}. \code{.na} is coerced as necessary.
+Returns a object as the same type as \code{.data}. Columns are mutated to replace
+missing values (\code{NA}) with value specied by \code{.na} and \code{...}
 }
 \description{
-Replaces \code{NA} values with explicit values.
+Replace missing values (\code{NA}) in a table and lists
 }
 \details{
-\code{na_replace} replaces missing values in \code{x} by \code{.na}. Replacement is both
-class/type and length safe meaning the result is guaranteed to be the
-same class/type and length of \code{x} regardless of the value of \code{.na}.
+\code{na_replace} is similar to other \emph{dplyr} verbs especially \code{\link[dplyr:mutate]{dplyr::mutate()}}
+except it always operates on a subset of vector elements, i.e. those with \code{NA}
+values.
 
-\strong{Param: \code{x}}
-
-If \code{x} is \strong{categorical} (e.g. character or factor), \code{.na} is optional.
-The default is "(NA)" and can be set with
-\code{options( NA_explicit_ = new_value )}. It can also be
-referenced directly with \link{NA_explicit_}.
-
-If \code{x} is a \strong{factor}, unique values of \code{.na} not in already present in
-\code{levels(x)} will be added. They are appended silently unless
-\code{getOption('verbose')==TRUE} in which a message reports the added levels.
-
-\strong{Param: \code{.na}}
-
-\code{.na} can be either a scalar, vector or function.
-
-If a vector, \code{.na} can be a length-1 scalar or length(x)-vector. If a
-length-1 scalar all missing values are replaced by it.  If a
-length(x)\code{-vector, missing values are replaced by the corresponding elements of}.na\code{. Recycling values of}.na` is not allowed.
-
-\code{na.replace} is a alias for na_replace that is likely to be deprecated.
+The behavior depends on the values of \code{.na} and \code{...}. (See Usage.)
 }
 \examples{
 
-  # Integers and numerics
-  na_replace( c(1,NA,3,NA), 2 )    # 1 2 3 2   
-  na_replace( c(1,NA,3,NA), 1:4 )  # 1 2 3 4
+mtcars \%>\% na_replace(0, mpg, cyl)
+mtcars \%>\% na_replace(1:6, mpg, cyl)
 
-  na_replace( c(1,NA,3,NA), letters[1:4] )  # "1" "b" "3" "d"
+mtcars \%>\% na_replace( na.mean )
+mtcars \%>\% na_replace( mean )       # unsafe
+mtcars \%>\% na_replace( length, mpg, disp )
+mtcars \%>\% na_replace( mean, mpg, disp )
+mtcars \%>\% na_replace( mpg=na.mean, cyl=na.max )
 
-  # Characters 
-  lets <- letters[1:5]
-  lets[ c(2,4) ] <- NA
-  lets \%>\% na_replace
-
-  # Factors 
-  fct <- as.factor( c( NA, letters[2:4], NA) )
-  fct
-  na_replace(fct, "z")  # z b c d z  -- level z added
-  na_replace(fct, letters[1:5] )
-  na_replace(fct)
-     
-}
-\seealso{
-\itemize{
-\item \code{\link[=na_explicit]{na_explicit()}} for a similar function that additionally handles recursive
-\item and table-like objects
-\item \code{\link[base:ifelse]{base::ifelse()}}, \code{\link[base:replace]{base::replace()}}
-\item \code{forcats::fct_explicit_na} - which only handles factors
-}
 }

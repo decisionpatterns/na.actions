@@ -13,6 +13,7 @@ Default replacement for missing values in categorical vectors.
 }
 \details{
 \code{NA_explicit_} is used as a default replacement for categorical vectors.
+
 It is an active binding to \code{getOptions('NA_explicit_')} and is exported
 to the callers namespace.
 
@@ -23,8 +24,7 @@ You cannot directly set `NA_explicit_``
 }
 \seealso{
 \itemize{
-\item \code{\link[=na_explicit]{na_explicit()}}
-\item \code{\link[=na_replace]{na_replace()}}
+\item \code{\link[=na.replace]{na.replace()}} and \code{\link[=na_replace]{na_replace()}}
 }
 }
 \keyword{datasets}
