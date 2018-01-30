@@ -19,7 +19,10 @@ It should be extensible and be able to handle
 
  - The explicit value for `forcats::fct_explicit_na` is `(Missing)`; this is not
    adopted here because it is needlessly long, '(NA)' is used instead.
-   
+ - beginning variables with 
+ 
+ 
+ 
 ## na.replace and 
 
 ## Organization 

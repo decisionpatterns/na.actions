@@ -20,7 +20,7 @@ to the callers namespace.
 To change the value of \code{NA_explicit} use:\preformatted{options( NA_explicit = new_value )
 }
 
-You cannot directly set `NA_explicit_``
+\code{NA_explicit_} cannot be directly set.
 }
 \seealso{
 \itemize{

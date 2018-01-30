@@ -1,4 +1,4 @@
-#' na.which - Identify missing values
+#' which.na - Identify missing values
 #' 
 #' Return the indexes of those values that are missing 
 #' 
@@ -14,31 +14,31 @@
 #' 
 #' @examples
 #'   x <- c( 1, NA, NA, 3:6 )
-#'   na.which(x)
+#'   which.na(x)
 #'   
 #' @export 
 
-na.which <- function(x) UseMethod('na.which') 
+which.na <- function(x) UseMethod('which.na') 
 
 
-#' @rdname na.which
+#' @rdname which.na
 #' @export
-na.which.default <- function(x)
+which.na.default <- function(x)
   which( is.na(x) )
 
 
-#' @rdname na.which
+#' @rdname which.na
 #' @export
 
-na.which.data.frame <- function(x)
-  names(x)[ sapply( x, anyNA ) ]
+which.na.data.frame <- function(x)
+  names(x)[ sapply( x, any.na ) ]
 
 
-#' @rdname na.which
-#' @alias which.na
+#' @rdname which.na
+#' @alias na.which
 #' @export
 
-which.na <- function(x) {
- # message("'which_na' is deprecated. Instead, use: 'na.which'") 
- na.which(x) 
+na.which <- function(x) {
+ # message("'which_na' is deprecated. Instead, use: 'which.na'") 
+ which.na(x) 
 }

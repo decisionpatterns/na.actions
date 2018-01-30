@@ -34,9 +34,10 @@ Replaces \code{NA}s by 0.
 \details{
 \code{na.replace} replaces missing values in \code{x} by \code{.na}.
 
-Replacement is both class/type and length safe meaning the result
-is guaranteed to be the same class/type and length of \code{x} regardless of the
-value of \code{.na}.
+In R, replacement of values can cause the class/type of to change. This is
+not often desired behavior. By contrast, \code{na.replace} replaces values in
+class/type-safe and length-safe ways. The result is guaranteed to be the
+same class/type and length of \code{x} regardless of the value of \code{.na}.
 
 \strong{Param: \code{x}}
 

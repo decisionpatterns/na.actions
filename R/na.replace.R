@@ -10,9 +10,10 @@
 #' 
 #' `na.replace` replaces missing values in `x` by `.na`. 
 #' 
-#' Replacement is both class/type and length safe meaning the result 
-#' is guaranteed to be the same class/type and length of `x` regardless of the 
-#' value of `.na`. 
+#' In R, replacement of values can cause the class/type of to change. This is 
+#' not often desired behavior. By contrast, `na.replace` replaces values in 
+#' class/type-safe and length-safe ways. The result is guaranteed to be the 
+#' same class/type and length of `x` regardless of the value of `.na`. 
 #' 
 #' **Param: `x`** 
 #' 
@@ -87,9 +88,9 @@
 na.replace <- function(x, .na, ...) { 
   
  if( is.recursive(x) ) 
-   stop( call.=FALSE, "na.replace does not support recursive objects. See na_replace.")
+   stop( call.=TRUE, "na.replace does not support recursive objects. Use 'na_replace'.")
   
-  # CHECK .na length == 1 or length(x)
+ # CHECK .na length == 1 or length(x)
   if( ! missing(.na) )
     if( ! length(.na) %in% c(1,length(x)) )  
       stop( "length(.na) is not 1 or length(x); recycling of .na is not allowed.")
@@ -101,17 +102,34 @@ na.replace <- function(x, .na, ...) {
 #' @export
 na.replace.default <- function(x, .na, ...) {
   
-  # When .na is a function, apply is
-  if( is.function(.na) ) .na <- .na( na.omit(x), ... )
+  wh <- is.na(x)
   
-  # Ensure type safety
-  .na <- na.actions:::coerce_to( .na, class(x) )
-
-  # support for vector replacement  
-  if( length(.na) == 1 )
-    x[ is.na(x) ] <- .na else
-    x[ is.na(x) ] <- .na[ is.na(x) ]
-
+  # 1. CALCULATE REPLACEMENT VALUES: if `.na`
+  # NB. For row-based imputes, only  missing rows needed be calculate imputed value
+  if( is.function(.na) ) .na <- .na(x)
+  
+  
+  # 2. USE SAFE_COERCION
+  # Coerce replacement values to the same type as original vector.
+  .na <- coerce_safe( .na, class(x) )
+  
+  # 3. TRAP FOR NAs 
+  #    - Replacement values should not be missing
+  #    - When .na is a function, compute it on `x`, use `...` as additional args.`
+  # 4. MAKE REPLACEMENTS 
+  
+  if( length(.na) == 1 ) { 
+    if( is.na(.na) ) { 
+      warning("Replacement value is 'NA'. Returning values unchanged.")
+      return(x)
+    }
+    x[ wh ] <- .na
+  } else {
+    if( all.na( .na[wh] ) ) warning( "Replacement values are all 'NA'.")
+    if( any.na( .na[wh] ) ) warning( "Replacement values contain missing values 'NA'." )  
+    x[wh] <- .na[wh]
+  }
+  
   x  
   
 }

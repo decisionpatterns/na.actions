@@ -2,12 +2,17 @@
 % Please edit documentation in R/na.median.R
 \name{na.median}
 \alias{na.median}
+\alias{na.quantile}
 \title{na.median}
 \usage{
 na.median(x, ...)
+
+na.quantile(x, prob = 0.5, ...)
 }
 \arguments{
 \item{x}{numeric; vector to have \code{NA} values replaced.}
+
+\item{prob}{numeric scalar; probability values. (Default: 0.5, i.e. median)}
 }
 \value{
 A vector of the same length as \code{x} with \code{NA} replaced by the
@@ -15,6 +20,14 @@ median
 }
 \description{
 Replace \code{NA} values with the median
+}
+\examples{
+ 
+  na.median( c(1,2,NA_real_,3) )
+      
+
+  na.quantile( c(1,2,NA_real_,3), prob=0.4 )
+
 }
 \seealso{
 \code{\link[=na.replace]{na.replace()}}, \code{\link[=na.mean]{na.mean()}}

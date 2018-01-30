@@ -10,6 +10,18 @@
  dplyr/tidyverse standards and behaviors. ( They will also work on atomic 
  objects.)  
  
+ - [ ] `na[._]impute` as alias for `na[._]replace` respectively.
+ 
+ - [ ] `na.explicit` and `na_explicit` apply to factors only
+ 
+ - [ ] Row-based imputation does not need to calculate every-value values for 
+   all observations, only the missing ones. This is different than column-based
+   imputations which need values from all observations. There might be some 
+   efficiency gains from doing this.
+   
+ - [ ] There is a generalized imputation that uses both rows and columns and
+   might automatically consider by-groups (how does the values of )
+ 
  - Should we permit some unsafe operations in na.replace?
    - Change length? No
    - Change value? No? With warning
@@ -23,6 +35,17 @@
  - na.shuffle.
  
  - favor `na.replace` & `na.restore` over `na.explicit` and `na.implicit`
+ - `na.impute`(?) 
+ 
+ - [x] Rename `.na` to `.fun`? No, because it may not be a function.
+ 
+### `coerce_safe`
+
+ - [ ] Handle **ALL NA** columns
+ - [ ] Move `coerce_safe` to the **coercion** package. [ ] Import **coercion**.
+ - [x] Move `coerce_to` functionality into `na.replace.default` -and/or- 
+   rename to `coerce_safe` 
+ 
  
  - tbl version of na_replace / na_explicit (?)
    - should atomic be supported : LEAN: YES

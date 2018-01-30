@@ -2,7 +2,7 @@
 % Please edit documentation in R/na.most_freq.R
 \name{na.most_freq}
 \alias{na.most_freq}
-\title{na.most_freq}
+\title{Replace missing values by most frequently value}
 \usage{
 na.most_freq(x, .na, ...)
 }
@@ -10,14 +10,14 @@ na.most_freq(x, .na, ...)
 \item{...}{arguments passed to functions}
 }
 \description{
-Replace missing value with the most frequently-occuring non-missing value
+Replace missing value with the most-frequently, non-missing value
 }
 \details{
-In the event of ties, the values listed first will be used.
+In the event of ties, the values listed first is used.
 }
 \examples{
 
   c(1,1,NA,4) \%>\% na.most_freq()
   c(1,1,4,4,NA) \%>\% na.most_freq() 
-  
+
 }

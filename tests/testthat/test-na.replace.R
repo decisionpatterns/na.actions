@@ -36,10 +36,9 @@ test_that("na.replace-continuous-integer", {
 
  # REPLACE with FUNCTION 
   ans <- c(1,2,3,2)
-   v %>% na.replace(mean) %T>% 
+  v %>% na.replace(.na={ . %>% mean(na.rm=TRUE) } ) %T>% 
     expect_is("integer") %>% 
     expect_equal(ans)    # 1 2 3 2
-
    
 # REPLACE by non-consistent class/type
   expect_error( v %>% na.replace("a") )
@@ -81,9 +80,9 @@ test_that("na.replace-continuous-integer", {
     expect_equal(ans)             # 1 2 3 4
 
 # REPLACE with FUNCTION
-   ans <- c(1,2,3,2)
-   v %>% na.replace(mean) %T>% 
-    expect_is("numeric") %>% 
+  ans <- c(1,2,3,2)
+  v %>% na.replace( { . %>% mean(na.rm=TRUE)} ) %T>%
+    expect_is("numeric") %>%
     expect_equal(ans)    # 1 2 3 2
 
    

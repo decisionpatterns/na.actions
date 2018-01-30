@@ -2,6 +2,7 @@
 % Please edit documentation in R/na_replace.R
 \name{na_replace}
 \alias{na_replace}
+\alias{na_replace_at}
 \title{Replace missing values in tbales and lists}
 \usage{
 `na_replace` can be used for three replacement operatations: 
@@ -16,6 +17,8 @@
  
 Use Additional arguments are to `.na` are not used; Use na_replace_at for 
 or create your own lambda functions.
+
+na_replace_at(.tbl, .na, .vars, ...)
 }
 \arguments{
 \item{.data}{list-like or table-like structure.}
@@ -39,15 +42,25 @@ values.
 
 The behavior depends on the values of \code{.na} and \code{...}. (See Usage.)
 }
+\note{
+\code{...} is used to specify columns in \code{na_replace} but is used as additional
+arguments to \code{.na} in the other \code{na_replace_*} functions.
+}
 \examples{
 
-mtcars \%>\% na_replace(0, mpg, cyl)
-mtcars \%>\% na_replace(1:6, mpg, cyl)
+data(nacars)
+nacars \%>\% na_replace(0, mpg, cyl)
+nacars \%>\% na_replace(1:6, mpg, cyl)
 
-mtcars \%>\% na_replace( na.mean )
-mtcars \%>\% na_replace( mean )       # unsafe
-mtcars \%>\% na_replace( length, mpg, disp )
-mtcars \%>\% na_replace( mean, mpg, disp )
-mtcars \%>\% na_replace( mpg=na.mean, cyl=na.max )
+nacars \%>\% na_replace( na.mean )
+nacars \%>\% na_replace( mean )       # unsafe
+nacars \%>\% na_replace( length, mpg, disp )
+nacars \%>\% na_replace( mean, mpg, disp )
+nacars \%>\% na_replace( mpg=na.mean, cyl=na.max )
+nacars \%>\% na_replace( na.mean, c('mpg','disp') )
+  
 
+ nacars \%>\% na_replace_at( -99, .vars=1:3 )
+ nacars \%>\% na_replace_at( .na=na.mean, .vars=1:6, trim=.25 )  # Uses `...` for additional args
+ 
 }

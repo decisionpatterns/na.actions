@@ -59,22 +59,8 @@ kv.default <- function(x) {
   return(kv)
 }
 
-# coerce to the type of the class while trapping errors
-# Coerces a value to a class but stopping if NAs are produced or the objects 
-# are not eq
-# non-export
-coerce_to <- function(object, class) {
-  
-  if( is(object, class) ) return(object) 
-  
-  suppressWarnings( res <- as(object, class) )
-  if( any.na(res) ) stop( paste0("NAs produced in coercing replacement values` to ",  class ) )
-  if( any(res != object) ) stop( paste0( "Coercion of replacement values altered their values from ", class ) )  
-  
-  res
-    
-}
-  
+
+
 # @author decision patterns / christopher brown
 # Taken from the base.tools package with permission 
 qw <- function (...) 

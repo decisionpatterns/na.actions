@@ -11,11 +11,12 @@ na.mean(x, ...)
 
 \item{...}{additional arguments passed to \code{\link[=base:mean]{base:mean()}} such as
 
-Replaces \code{NA} values with the mean of the series. Will return NA if
-all the values are \code{NA}}
+\code{na.mean} replaces \code{NA} values with the mean of \code{x}. Internally,
+\code{mean(x, na.rm=TRUE, ... )} is used. If mean cannot be calculated (e.g. x
+isn't numeric) then \code{x} is returned with a warning.}
 }
 \value{
-A vector of the same length as \code{x} with \code{NA} replaced by the mean
+A vector of the same length as \code{x} with \code{NA} replaced by the \code{mean(x)}
 }
 \description{
 Replace \code{NA} values with the mean

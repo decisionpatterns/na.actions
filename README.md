@@ -18,24 +18,31 @@ In ass
 
 ## Feature List
  
- * Over 80 functions for working with missing values (See [#Function List] below.) 
+ * Over **80** functions for working with missing values (See [#Function List] below.) 
  * Standardizes and extends `na.*` functions found in the *stats* package.
  * Provides **dplyr**/**tidyverse** inteface for working with table data
+ * Calculate statistics on missing values: `na.n`, `na.pct`
+ * Remove missing rows: `drop_rows_any_na`, `drop_rows_all_na`
+ * Remove missing cols: `drop_cols_any_na`, `drop_cols_all_na`
  * Replacement/Imputation
-   * Type/class and length-safe replacement: **na.actions** will never change 
-     produce an object with a different length/nrow or type/class of its target.
-   * Replace using scalar, vector, functions
-   * Support for ordered or time-series data: `na.loess`, `na.locf`, `na.locb`, `na.trim`
+   * Type/class and length-safe replacement. (**na.actions** will never change 
+     produce an object with a different length/nrow or type/class of its target.)
+   * Replace using scalar, vector or function(s)
+   * Support for ordered or time-series data: `na.loess`, `na.locf`, `na.locb`, `na.trim`, `na.approx`, `na
    * Summary function for common replacements: `mean`, `median`, `max`, `min`, `zero`
-   * Support for recursive (list or table-like structures)
-   * Easy mnemonic: 
-     - `na.*` operates on vectors like na.omit
-     - `na_*` operates on tables in dplyr/tidyvese comliant way.
-  * Four, extensible types of Imputations
+   * Support for recursive (lists and table-like structures)
+   * Support for `tibble`
+   * Support for `data.table`
+   * Easy mnemonics:
+     - Functions beginning with `na` deal with handling values (think: `na.omit`)
+       - `na.*` (dot) operate on vectors like `na.omit`
+       - `na_*` (underscore) operate on tables like function in dplyr/tidyvese.
+     - Non replacement functions do not start w
+  * Four, extensible types of imputations
 
 ### Upcoming features
 
- * (-tk) recall/track which values have been replaced
+ * recall/track which values have been replaced
  * `na.quantile`
  * `by-group` calculations
  * Model-based imputation 
@@ -64,9 +71,9 @@ Coming Soon ...
 
 ### Identification and Tests
 
- * `which.na` - Return logical or character 
- * `na.all` (`all.na`) - test if all elements are missing
- * `na.any` (`any.na`) - test if any elements are missing
+ * `which.na` - Return logical or character indicating which elements are missing 
+ * `all.na` (`na.all`)  - test if all elements are missing
+ * `any.na` (`na.any`)  - test if any elements are missing
    
 ### Removal / Ommision / Exclusion 
 
@@ -88,7 +95,7 @@ describing each of the methods used.
 **Constants**
 
 In "constant" imputation methods, missing values are replaced by an 
-*a priori* selected constant value. The vector containing the missing values 
+*a priori* selected constant value. The vector containingmissing values 
 is not used to calculate the replacement value. These take the form: `na.fun(x, ...)`
 
  * `na.zero` - 0 
@@ -96,13 +103,17 @@ is not used to calculate the replacement value. These take the form: `na.fun(x, 
  * `na.constant` (deprecated: use `na_replace`)
 
 
-**Computed (univariate)**
+**Univariate**
 
-(Impute using a functions of the target variable)
+(Impute using function(s) of the target variable; When imputing in a table this 
+is also called *column-based imputation* since the values used to derive the 
+imputed come from the single column alone.)
 
-In "computed, univariate" replacement methods, values are calculated using 
-the containing vector alone. The ordering of the vector does not affect 
-imputed values. 
+In "univariate" replacement methods, values are calculated using 
+only the target vector, ie the one containing the missing values. The functions 
+for performing the imputation are nominally univariate summary functions. 
+Generally, the ordering of the vector does not affect imputed values. In general,
+one value is used to replace all missing values (`NA`) for a variable.
 
  * `na.n` - count of NA values
  * `na.max` - maximum  
@@ -113,13 +124,15 @@ imputed values.
  * `na.sample`/`na.random` - randomly sampled value
 
 
-**Computed (univariate, ordered/time-series objects)**
+**Ordered Univariate** 
 
-(Imputed using a function of the target variable when the variable is ordered.)
+(Impute using function(s) of the target variable. Variable ordering relevant. 
+This is a super class of the previous **column-based imputation**.)
 
-In "Computed univariate and ordered" methods, replacement valuse are calculated
+In "ordered univariate" methods, replacement valuse are calculated
 from the vector that is assumed to be ordered. These types are very
-often used with **time-series** data.
+often used with **time-series** data. (Many of these functions are taken from 
+or patterned after functions in the **zoo** package.)
 
  * `na.loess` - loess smoother, assumes values are ordered
  * `na.locf` - last observation carried forward, assumes ordered 
@@ -131,17 +144,22 @@ often used with **time-series** data.
  * `na.aggregate` - Replace by aggregate values Taken from the `zoo` package.
 
  
-**Computed (multivariate)**
+**Multivariate**
 
-(Impute with multiple variables)
+(Impute with multiple variables from the same observation. In tables, this is
+also called **row-based imputation** because imputed values derive from other 
+measurement for the same observation. )
 
-In "Computed multivariate" imputation, any value from the same 
-row (observation) can be used to derive the replacement value. This is generally 
-implemented as 
+In "Multivariate" imputation, any value from the same row (observation) can be 
+used to derive the replacement value. This is generally implemented as a model 
+traing from the data with `var ~ ...`
 
  * `na_fit`,`na_predict` - use a model 
 
 
+**Generalized** (-tk)
+
+(Impute with column and rows.)
 
  
 **General**
@@ -150,7 +168,7 @@ implemented as
 
  
 **Misc.** 
- * `na.roughfix.POSIXct` - Impute for POSIXct vectors in the RandomForest package
+ * `na.roughfix.POSIXct` - Impute for POSIXct vectors in the **RandomForest** package
  
 
 **Future:**
@@ -159,18 +177,6 @@ implemented as
  * `na.toggle` - toggle between `NA` and replacement values
 
 
- 
-
-
-
-
-
-
-### Miscellaneous
-
- * na.roughfix.POSIXct - use with datetime values
-
- 
 ## Examples
 
     v <- 1:3

@@ -20,37 +20,37 @@
 #' 
 #' @seealso 
 #'  - [base:anyNA()]
-#'  - [na.all()] 
+#'  - [all.na()] 
 #'  - [which.na()] 
 #'   
 #' @examples
-#'   na.any( 1:10 )           # FALSE
-#'   na.any( c( 1, NA, 3 ) )  # TRUE
+#'   any.na( 1:10 )           # FALSE
+#'   any.na( c( 1, NA, 3 ) )  # TRUE
 #'   
 #' @export
 
-na.any <- function(x) UseMethod("na.any")
+any.na <- function(x) UseMethod("any.na")
 
 #' @return `logical`
-#' @rdname na.any
-#' @method na.any default
-#' @aliases na.any.default
+#' @rdname any.na
+#' @method any.na default
+#' @aliases any.na.default
 #' @export
 
-na.any.default <- function(x)
+any.na.default <- function(x)
    anyNA(x)
 
 
 #' @return `logical`
-#' @rdname na.any
-#' @method na.any data.frame
-#' @aliases na.any.data.frame
+#' @rdname any.na
+#' @method any.na data.frame
+#' @aliases any.na.data.frame
 #' @export
-na.any.data.frame <- function(x)
-  any( sapply( x, na.any ) )
+any.na.data.frame <- function(x)
+  any( sapply( x, any.na ) )
 
 
-#' @rdname na.any
+#' @rdname any.na
 #' @export 
 
-any.na <- na.any
+na.any <- any.na
