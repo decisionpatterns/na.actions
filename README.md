@@ -77,9 +77,8 @@ Coming Soon ...
    
 ### Removal / Ommision / Exclusion 
 
- * `na.rm` - remove `NA`s
+ * `na.rm` - remove `NA`s  (with tables is equivalent to `drop_cols_all_na` )
  * `na.trim` - remove `NA`s from beginning or end (order matters)
- 
  
 **Table Only Functions:**
  * `drop_rows_all_na`, `drop_rows_any_na`

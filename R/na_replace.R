@@ -70,7 +70,7 @@ na_replace <- function (.data, .na, ...)
   # vars: key-value list ...
   
   # TEST whether unknown columns were specified   
-  unknown <- setdiff( names(vars), names(.data))
+  unknown <- setdiff( names(vars), names(.data) )
   if( length(unknown) > 0 )
     stop( paste( "Unknown columns:", paste(unknown, collapse=", ")))
   
@@ -115,7 +115,10 @@ na_replace <- function (.data, .na, ...)
 #' @examples 
 #' 
 #'  nacars %>% na_replace_at( -99, .vars=1:3 )
-#'  nacars %>% na_replace_at( .na=na.mean, .vars=1:6, trim=.25 )  # Uses `...` for additional args
+#'  nacars %>% na_replace_at( .na=na.mean, .vars=1:6 )
+#'  nacars %>% na_replace_at( .na=mean   , .vars=1:6, na.rm = TRUE  )  # Same, uses `...` for additional args
+#'   
+#'  nacars %>% na_replace_at( .na=na.mean, .vars = c('mpg','cyl', 'disp') )
 #'  
 #' @import rlang
 #' @rdname na_replace
@@ -138,7 +141,8 @@ na_replace_at <- function(.tbl, .na, .vars, ... ) {
 #'  
 #' @examples 
 #' 
-#' nacars %>% na_replace_all( na.min )
+#'   nacars %>% na_replace_all( -99 )
+#'   nacars %>% na_replace_all( na.min )
 #'   
 #' @rdname na_replace_at   
 #' @export
@@ -156,7 +160,7 @@ na_replace_if <- function( .tbl, .na, .predicate, ... ) {
 
   for( i in 1:length(.tbl) ) 
     if( .predicate(.tbl[[i]] ) ) 
-      .tbl[[i]] <- na.replace( .tbl[[i]],  )
+      .tbl[[i]] <- na.replace( .tbl[[i]], .na=.na, .predicate=.predicate, ...  )
     
   .tbl
 }

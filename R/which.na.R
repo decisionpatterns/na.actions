@@ -6,14 +6,23 @@
 #' 
 #' @details 
 #' 
-#' Implemented as `which( is.na(x) )`
+#' `which.na` is implemented as `which( is.na(x) )` and 
 #' 
-#' @return `integer` of indexes of `x` that are `NA`.  The
+#' @return 
+#' 
+#' `integer` of indexes of `x` that are `NA`.  The
 #' `names` of the returned vector are set to the names of `x`.
-#' that are `NA`.
+#' 
+#' @seealso 
+#' 
+#'  * [base::is.na()] - for the variant returning logical 
 #' 
 #' @examples
-#'   x <- c( 1, NA, NA, 3:6 )
+#' 
+#'   x <- c( 1, NA, NA, 4:6 )
+#'   which.na(x)
+#'   
+#'   names(x) <- letters[1:6]
 #'   which.na(x)
 #'   
 #' @export 
@@ -39,6 +48,6 @@ which.na.data.frame <- function(x)
 #' @export
 
 na.which <- function(x) {
- # message("'which_na' is deprecated. Instead, use: 'which.na'") 
+ message("'which.na' is preferred for vectors.") 
  which.na(x) 
 }

@@ -3,20 +3,35 @@
 \name{na.n}
 \alias{na.n}
 \alias{na.howmany}
+\alias{n_na}
 \alias{na.pct}
+\alias{pct_na}
 \title{Counts how many values are NA}
 \usage{
 na.n(x)
 
 na.howmany(x)
 
+n_na(x)
+
 na.pct(x)
+
+pct_na(x)
 }
 \arguments{
 \item{x}{object to count how many values are \code{NA}}
 }
+\value{
+\code{na.n} returns an integer. \code{na.pct} returns a numeric value 0-1.
+}
 \description{
 Returns the number of values that are NA
+}
+\details{
+\code{na.n} counts the number of missing values. \code{n_na} is an alias in the dplyr
+style.
+
+\code{na.pct} gives the percentage of values that are \code{NA}
 }
 \examples{
   x <- c( 1, NA, NA, 4:5 )

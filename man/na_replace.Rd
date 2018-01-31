@@ -61,6 +61,9 @@ nacars \%>\% na_replace( na.mean, c('mpg','disp') )
   
 
  nacars \%>\% na_replace_at( -99, .vars=1:3 )
- nacars \%>\% na_replace_at( .na=na.mean, .vars=1:6, trim=.25 )  # Uses `...` for additional args
+ nacars \%>\% na_replace_at( .na=na.mean, .vars=1:6 )
+ nacars \%>\% na_replace_at( .na=mean   , .vars=1:6, na.rm = TRUE  )  # Same, uses `...` for additional args
+  
+ nacars \%>\% na_replace_at( .na=na.mean, .vars = c('mpg','cyl', 'disp') )
  
 }

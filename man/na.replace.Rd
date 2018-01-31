@@ -32,7 +32,7 @@ Replaces \code{NA} values with explicit values.
 Replaces \code{NA}s by 0.
 }
 \details{
-\code{na.replace} replaces missing values in \code{x} by \code{.na}.
+\code{na.replace} replaces missing values in \code{x} by \code{.na} if possible.
 
 In R, replacement of values can cause the class/type of to change. This is
 not often desired behavior. By contrast, \code{na.replace} replaces values in

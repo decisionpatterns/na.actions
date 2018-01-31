@@ -18,20 +18,25 @@
 #'   contain solely `NA` values.
 #' 
 #' @seealso 
-#'   [stats::na.omit()] 
-#'   [stats::na.exclude()] \cr
-#'   [na.all()]
+#'   * [stats::na.omit()], [stats::na.exclude()]
+#'   * [drop_cols_all_na()] 
+#'   * [all.na()]
 #'   
 #' @md   
 #' @export
 
-na.rm <- function(object) UseMethod('na.rm')
+na.rm <- function(object) {
+  UseMethod('na.rm')
+}
+
+#' @export
+na.rm.default <- na.omit
 
 #' @export
 
 na.rm.data.table <- function(object) { 
-
-  wh_nm <- object %>% sapply(na.all) %>% which %>% names
+  
+  wh_nm <- object %>% sapply(all.na) %>% which %>% names
   
   if( length(wh_nm)>0 ) 
     # object[ , c(wh_nm) := NULL ]
@@ -43,7 +48,7 @@ na.rm.data.table <- function(object) {
 #' @export
 na.rm.data.frame <- function(object) { 
 
-  wh <- object %>% sapply(na.all) %>% which 
+  wh <- object %>% sapply(all.na) %>% which 
 
   if( length(wh)>0 ) 
     object <- object[ , -wh ]
@@ -55,6 +60,11 @@ na.rm.data.frame <- function(object) {
 #' @rdname na.rm
 #' @export 
 na.rm <- na.rm 
+
+
+#' @rdname na.rm
+#' @export 
+na_rm <- na.rm
 
 # na.rm <- function(object) { 
 #   warning("na.rm is deprecated. Use na.rm instead.")

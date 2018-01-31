@@ -1,4 +1,6 @@
-#' mk_recursive 
+#' verbage
+#' 
+#' Make dplyr verbs simply 
 #' 
 #' Make table/recursive versions of vector replacement functions
 #' 
@@ -38,18 +40,6 @@ mk_recursive <- function( fun ) {
   
 }
 
-
-
-#' Table imputation methods
-#' 
-#' Replace missing value methods 
-#' 
-#' @param .tbl table-like or list-like structure
-#' @param ... listname=expr 
-#' 
-#' @details 
-#' 
-#' These methods perform missing value replacement on tables and lists. 
 #' 
 #' @rdname na-tables
 #' @export
@@ -58,11 +48,3 @@ na_constant <- mk_recursive(na.constant)
 #' @rdname na-tables 
 #' @export
 na_zero <- mk_recursive(na.zero)
-
-#' @rdname na-tables 
-#' @export
-na_inf <- mk_recursive(na.inf)
-
-#' @rdname na-tables 
-#' @export
-na_neginf <- mk_recursive(na.neginf)

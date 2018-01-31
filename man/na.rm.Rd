@@ -2,11 +2,14 @@
 % Please edit documentation in R/na.rm.R
 \name{na.rm}
 \alias{na.rm}
+\alias{na_rm}
 \title{na.rm}
 \usage{
 na.rm(object)
 
 na.rm(object)
+
+na_rm(object)
 }
 \arguments{
 \item{object}{to remove \code{NA}s from}
@@ -27,7 +30,9 @@ For removing columns or rows that are have only missing values use
 \code{\link[=na.drop_col]{na.drop_col()}} or \code{\link[=na.drop_row]{na.drop_row()}}
 }
 \seealso{
-\code{\link[stats:na.omit]{stats::na.omit()}}
-\code{\link[stats:na.exclude]{stats::na.exclude()}} \cr
-\code{\link[=na.all]{na.all()}}
+\itemize{
+\item \code{\link[stats:na.omit]{stats::na.omit()}}, \code{\link[stats:na.exclude]{stats::na.exclude()}}
+\item \code{\link[=drop_cols_all_na]{drop_cols_all_na()}}
+\item \code{\link[=all.na]{all.na()}}
+}
 }

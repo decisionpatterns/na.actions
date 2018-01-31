@@ -8,7 +8,7 @@
 #' 
 #' @details 
 #' 
-#' `na.replace` replaces missing values in `x` by `.na`. 
+#' `na.replace` replaces missing values in `x` by `.na` if possible.
 #' 
 #' In R, replacement of values can cause the class/type of to change. This is 
 #' not often desired behavior. By contrast, `na.replace` replaces values in 
@@ -102,31 +102,37 @@ na.replace <- function(x, .na, ...) {
 #' @export
 na.replace.default <- function(x, .na, ...) {
   
-  wh <- is.na(x)
+  wh <- which.na(x)
+  if( length(wh) == 0 ) return(x)  # No need to evaluate without missing values.
   
-  # 1. CALCULATE REPLACEMENT VALUES: if `.na`
+  # 1. `.na` function(s) need to be evaluated for before used in replacemnet
   # NB. For row-based imputes, only  missing rows needed be calculate imputed value
-  if( is.function(.na) ) .na <- .na(x)
+  if( is.function(.na) ) .na <- .na(x, ...)
   
   
-  # 2. USE SAFE_COERCION
-  # Coerce replacement values to the same type as original vector.
+  # 2. This makes the results type/class-safe.
   .na <- coerce_safe( .na, class(x) )
   
-  # 3. TRAP FOR NAs 
+  # 3. Specially handle cases in which replacement values are missing
   #    - Replacement values should not be missing
-  #    - When .na is a function, compute it on `x`, use `...` as additional args.`
-  # 4. MAKE REPLACEMENTS 
+  #    - When .na is a function, compute it on `x`, use `...` as additional args.
   
-  if( length(.na) == 1 ) { 
+  # 4. scalar AND vector .na results need separate treatment.
+  # warnings indicate not all coercions are possible.
+  if( length(.na) == 1 ) {  # SCALAR
     if( is.na(.na) ) { 
       warning("Replacement value is 'NA'. Returning values unchanged.")
       return(x)
     }
     x[ wh ] <- .na
-  } else {
-    if( all.na( .na[wh] ) ) warning( "Replacement values are all 'NA'.")
-    if( any.na( .na[wh] ) ) warning( "Replacement values contain missing values 'NA'." )  
+    
+  } else {                 # VECTOR   
+    if( all.na( .na[wh] ) ) {
+      warning( "Replacement values are all 'NA'.")
+      return(x)
+    } else if( any.na(.na[wh]) ) {  
+      warning( "Replacement values contain missing values 'NA'." )  
+    }
     x[wh] <- .na[wh]
   }
   

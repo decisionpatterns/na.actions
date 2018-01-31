@@ -7,5 +7,6 @@
 # R data files from past sessions
 .Rdata
 .Rproj.user
+.RData
 
 src/zoo

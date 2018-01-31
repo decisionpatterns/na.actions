@@ -2,28 +2,33 @@
 % Please edit documentation in R/na.max.R
 \name{na.max}
 \alias{na.max}
-\title{na.max}
+\title{na.max, na.min}
 \usage{
 na.max(x, ...)
 }
 \arguments{
-\item{x}{vector to have mising values of \code{NA} values replaced.}
+\item{x}{vector to have mising values replaced.}
 
-\item{...}{additional arguments passed to other functions
+\item{...}{does nothing
 
-\code{na.max} replaces missing values (\code{NA}) with the maximum of non-missing
-values \code{x} using \code{base::max(na.rm==TRUE)}. \code{x} has to be numeric. ...`
-passes additional arguments to \code{\link[base:max]{base::max()}}.}
+\code{na.max} and \code{na.min} replace missing values (\code{NA}) with the maximum or
+minimum of non-missing values \code{x}. Internally \code{\link[base:max]{base::max()}} and \code{\link[base:min]{base::min()}}
+with \code{na.rm=TRUE}.
+
+\code{...} passes additional arguments to \code{\link[base:max]{base::max()}} and \code{\link[base:min]{base::min()}} which
+do nothing.}
 }
 \value{
 A vector of the same length as \code{x} with \code{NA} replaced by the maximum value
 of \code{x}; missing values are omitted.
 }
 \description{
-Replace \code{NA} values with the max
+Replace \code{NA} values with the max/min in a safe, consitent way.
 }
 \seealso{
-\code{\link[=na.replace]{na.replace()}} - used internally by these function
-\code{\link[=na.min]{na.min()}} -
-\code{\link[=na.inf]{na.inf()}} / \link{na.neginf}
+\itemize{
+\item \code{\link[=na.replace]{na.replace()}} - used internally by these functions
+\item \code{\link[base:max]{base::max()}} and \code{\link[base:min]{base::min()}}
+\item \code{\link[=na.inf]{na.inf()}} / \link{na.neginf}
+}
 }

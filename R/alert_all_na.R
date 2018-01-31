@@ -1,6 +1,6 @@
 #' all_na_warning
 #' 
-#' Produce a warning message that all values are missing and returns it's 
+#' Simply produce an alert stating all values are missing and returns it's 
 #' argument invisibly. This does not actual test the argument, but is useful in 
 #' a test for missing values: 
 #' 

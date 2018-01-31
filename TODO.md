@@ -10,6 +10,8 @@
  dplyr/tidyverse standards and behaviors. ( They will also work on atomic 
  objects.)  
  
+ - [ ] Create Logo **Circle Ban** of `NA`
+ 
  - [ ] `na[._]impute` as alias for `na[._]replace` respectively.
  
  - [ ] `na.explicit` and `na_explicit` apply to factors only

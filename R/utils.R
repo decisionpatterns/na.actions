@@ -16,7 +16,7 @@
 # objects.  
 # 
 # @references 
-# * [(SO: for-loop-in-r-with-key-value](http://stackoverflow.com/questions/18572921/for-loop-in-r-with-key-value)
+# * [SO: for-loop-in-r-with-key-value](http://stackoverflow.com/questions/18572921/for-loop-in-r-with-key-value)
 # * [SO: iterate-over-key-value-pair-from-a-list](http://stackoverflow.com/questions/4500106/iterate-over-key-value-pair-from-a-list)
 # 
 # @return  
@@ -24,7 +24,7 @@
 # with elements `k` and `v` representing the keys and values
 # 
 # @author
-# This function is taken from the *base.tools* package and is used with permission.
+# This function is taken from the *kv* package and is used with permission.
 #   
 # @examples 
 # 
